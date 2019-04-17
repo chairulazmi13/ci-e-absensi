@@ -49,6 +49,50 @@ class mAbsensi extends CI_Model {
 	}
 
 	// ---------------- HALAMAN PEGAWAI ----------------- //
+	function indexKehadiran($bulan,$harikerja,$id_pegawai)
+	{
+		$query = $this->db->query('SELECT pg.id, pg.nip, pg.nama,
+		 IFNULL(hd.hadir,0) as masuk,
+		 IFNULL(ct.jumlah_cuti,0) as jumlah_cuti,
+		 IFNULL(dn.jumlah_dinas,0) as jumlah_dinas,
+		 '.$harikerja.' - SUM(IFNULL(hd.hadir,0)+IFNULL(ct.jumlah_cuti,0)+IFNULL(dn.jumlah_dinas,0)) AS absen,
+		 ROUND(SUM(IFNULL(hd.hadir,0)+IFNULL(ct.jumlah_cuti,0)+IFNULL(dn.jumlah_dinas,0)) / '.$harikerja.',2) AS presentase
+		 FROM pegawai as pg
+
+		 LEFT JOIN (
+			SELECT id_absensi,id_pegawai, COUNT(absensi.masuk) AS hadir
+			FROM absensi
+			WHERE id_pegawai = '.$id_pegawai.'
+			AND MONTH(tanggal) = '.$bulan.'
+			GROUP  BY id_pegawai
+		 ) AS hd ON hd.id_pegawai = pg.id
+
+		 LEFT JOIN (
+			SELECT id_cuti,id_pegawai,SUM(jumlah_hari) AS jumlah_cuti
+			FROM cuti
+			WHERE id_pegawai = '.$id_pegawai.'
+			AND MONTH(tanggal_mulai) = '.$bulan.'
+			AND MONTH(tanggal_selesai) = '.$bulan.'
+			AND approve = 1
+			GROUP  BY id_pegawai
+		 ) AS ct ON ct.id_pegawai = pg.id
+
+		 LEFT JOIN (
+			SELECT id_dinas,id_pegawai,SUM(jumlah_hari) AS jumlah_dinas
+			FROM dinas
+			WHERE id_pegawai = '.$id_pegawai.'
+			AND MONTH(tanggal_mulai) = '.$bulan.'
+			AND MONTH(tanggal_selesai) = '.$bulan.'
+			GROUP  BY id_pegawai
+		 ) AS dn ON dn.id_pegawai = pg.id
+
+		 WHERE pg.id = '.$id_pegawai.'
+
+		 GROUP BY pg.id
+		 ORDER BY pg.nama ASC');
+		return $query;
+	}
+
 	function getEvent($id,$start,$end)
 	{
 		$query = $this->db->query('SELECT*FROM absensi WHERE id_pegawai = '.$id.' AND tanggal BETWEEN "'.$start.'"AND"'.$end.'"');
@@ -95,11 +139,7 @@ class mAbsensi extends CI_Model {
 
 	 function reportSummaryAbsensi($startgl,$endtgl,$harikerja)
 	 {
-	 	$query = $this->db->query('
-			SELECT
-			pg.id,
-			pg.nip,
-			pg.nama,
+	 	$query = $this->db->query('SELECT pg.id, pg.nip, pg.nama,
 			IFNULL(hd.hadir,0) as masuk,
 			IFNULL(ct.jumlah_cuti,0) as jumlah_cuti,
 			IFNULL(dn.jumlah_dinas,0) as jumlah_dinas,
@@ -107,7 +147,6 @@ class mAbsensi extends CI_Model {
 			'.$harikerja.' as harikerja,
 			'.$harikerja.' - SUM(IFNULL(hd.hadir,0)+IFNULL(ct.jumlah_cuti,0)+IFNULL(dn.jumlah_dinas,0)) AS absen,
 			ROUND(SUM(IFNULL(hd.hadir,0)+IFNULL(ct.jumlah_cuti,0)+IFNULL(dn.jumlah_dinas,0)) / '.$harikerja.',2) AS presentase
-
 			FROM pegawai as pg
 
 			LEFT JOIN (
@@ -135,8 +174,7 @@ class mAbsensi extends CI_Model {
 			) AS dn ON dn.id_pegawai = pg.id
 
 			GROUP BY pg.id
-			ORDER BY pg.nama ASC
-		');
+			ORDER BY pg.nama ASC');
 	 		return $query;
 		 }
 
