@@ -9,8 +9,9 @@ class pegawaiDashboard extends CI_Controller {
   		redirect(base_url('pegawai-login'));
   	}
 
-  	$this->load->model('mPegawai');
-
+    $this->load->model('mPegawai');
+    $this->load->model('mAbsensi');
+    $this->load->library('hitunghari');
   }
 
   function index()
@@ -68,14 +69,22 @@ class pegawaiDashboard extends CI_Controller {
         echo json_encode($response);
   }
 
-  function cobaqr(){
-    $qrcode = '311111111111111000-1062731515';
+  function getIndexPerBulan()
+  {
+    $id_pegawai = $this->session->userdata('p_id_pegawai');
+    $bulan = date('m');
 
-    $nip = substr($qrcode,0,18);
-    $ip = ltrim($qrcode,$nip);
+    $start = $this->hitunghari->tglindo(date('Y-m-01'));
+    $end   = $this->hitunghari->tglindo(date('Y-m-31'));
+    $harikerja = $this->hitunghari->hitungHariKerja($start,$end,"-");
 
-    $ip_address = long2ip($ip);
+    $data = $this->mAbsensi->indexKehadiran($bulan,$harikerja,$id_pegawai);
 
-    echo $nip.'<br>'.$ip_address;
+    foreach ($data->result_array() as $hasil) {
+      $response[] = $hasil;
+    }
+
+    echo json_encode($response);
   }
+
 }
