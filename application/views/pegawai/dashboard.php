@@ -24,10 +24,9 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="box box-default">
+          <div class="box box-primary">
            <div class="box-header with-border">
-             <h3 class="box-title">Chart Kehadiran</h3>
-
+             <h4 class="box-title">Index Kehadiran Bulan ini</h4>
              <div class="box-tools pull-right">
                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                </button>
@@ -40,20 +39,18 @@
                <div class="col-md-8">
                  <div class="chart-responsive">
                    <canvas id="chartKehadiran" height="150"></canvas>
+                   <br>
                  </div>
                  <!-- ./chart-responsive -->
                </div>
-               <!-- /.col -->
-               <div class="col-md-4">
-                 <ul class="chart-legend clearfix">
-                   <li><i class="fa fa-circle-o text-red"></i> Absen</li>
-                   <li><i class="fa fa-circle-o text-green"></i> Masuk</li>
-                   <li><i class="fa fa-circle-o text-yellow"></i> Cuti</li>
-                   <li><i class="fa fa-circle-o text-aqua"></i> Dinas</li>
-                 </ul>
-               </div>
-               <!-- /.col -->
              </div>
+             <div class="box-footer no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="#">Total Kehadiran<span class="pull-right text-green"> 20</span></a></li>
+                <li><a href="#">Hari Kerja <span class="pull-right text-yellow"> 30</span></a>
+                <li><a href="#">Presentase <span class="pull-right text-green"> 3%</span></a>
+              </ul>
+            </div>
              <!-- /.row -->
            </div>
            <!-- /.box-body -->
@@ -83,14 +80,15 @@
             });
           });
 
-          var ctx = $('#chartKehadiran');
-          var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
+          var ctx = $('#chartKehadiran').get(0).getContext('2d');
+          var option = {
+            display : false
+            }
+          var data = {
                 labels: ['Absen', 'Dinas', 'Cuti', 'Hadir'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5],
+                    data: $.post('<?=base_url('pegawai_backend/pegawaidashboard/getIndexPerBulan')?>'),
                     backgroundColor: [
                         '#dd4b39',
                         '#00c0ef',
@@ -106,6 +104,10 @@
                     borderWidth: 1
                 }]
             }
+          var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            option : option
         });
       });
     </script>
