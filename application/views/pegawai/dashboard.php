@@ -1,4 +1,6 @@
-    <!-- Content Wrapper. Contains page content -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -58,15 +60,14 @@
         </div>
     </section>
     <!-- /.content -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pie-chart/1.0.0/pie-chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pie-chart/1.0.0/pie-chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
          $('#Generate').click(function(event) {
+
           var id_pegawai = <?=$this->session->userdata('p_id_pegawai')?>;
           var nip = <?=$this->session->userdata('p_nip')?>;
-
-
             $.ajax({
                 url:'<?=base_url("pegawai-generate-qrcode")?>',
                 method:'POST',
@@ -81,41 +82,29 @@
                 }
             });
           });
+
           var ctx = $('#chartKehadiran');
           var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'pie',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Absen', 'Dinas', 'Cuti', 'Hadir'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: [12, 19, 3, 5],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        '#dd4b39',
+                        '#00c0ef',
+                        '#f39c12',
+                        '#00a65a',
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        '#dd4b39',
+                        '#00c0ef',
+                        '#f39c12',
+                        '#00a65a'
                     ],
                     borderWidth: 1
                 }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
             }
         });
       });
