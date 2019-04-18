@@ -46,9 +46,9 @@
              </div>
              <div class="box-footer no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">Total Kehadiran<span class="pull-right text-green"> 20</span></a></li>
-                <li><a href="#">Hari Kerja <span class="pull-right text-yellow"> 30</span></a>
-                <li><a href="#">Presentase <span class="pull-right text-green"> 3%</span></a>
+                <li><a href="#">Total Kehadiran<span class="pull-right text-green kehadiran"> 20</span></a></li>
+                <li><a href="#">Hari Kerja <span class="pull-right text-yellow harikerja"> 30</span></a>
+                <li><a href="#">Presentase <span class="pull-right text-green presentase"> 3%</span></a>
               </ul>
             </div>
              <!-- /.row -->
@@ -61,8 +61,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
+         // memanggila chart
+         getChart();
          $('#Generate').click(function(event) {
-
           var id_pegawai = <?=$this->session->userdata('p_id_pegawai')?>;
           var nip = <?=$this->session->userdata('p_nip')?>;
             $.ajax({
@@ -80,34 +81,70 @@
             });
           });
 
-          var ctx = $('#chartKehadiran').get(0).getContext('2d');
-          var option = {
-            display : false
-            }
-          var data = {
-                labels: ['Absen', 'Dinas', 'Cuti', 'Hadir'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: $.post('<?=base_url('pegawai_backend/pegawaidashboard/getIndexPerBulan')?>'),
-                    backgroundColor: [
-                        '#dd4b39',
-                        '#00c0ef',
-                        '#f39c12',
-                        '#00a65a',
-                    ],
-                    borderColor: [
-                        '#dd4b39',
-                        '#00c0ef',
-                        '#f39c12',
-                        '#00a65a'
-                    ],
-                    borderWidth: 1
-                }]
-            }
-          var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            option : option
-        });
+         // ---------- FUNCTION ------------- //
+         function getChart() {
+              $.ajax({
+                url: "<?=base_url('pegawai_backend/pegawaidashboard/getIndexPerBulan')?>",
+                method: "GET",
+                dataType : "JSON",
+                success: function(data) {
+                  
+                  var kehadiran = [];
+                  var totalKehadiran;
+                  var hariKerja;
+                  var presentase;
+
+                  for(var i in data) {
+                     kehadiran.push(data[i].absen);
+                     kehadiran.push(data[i].jumlah_dinas);
+                     kehadiran.push(data[i].jumlah_cuti);
+                     kehadiran.push(data[i].masuk);
+                     totalKehadiran = data[i].kehadiran;
+                     hariKerja = data[i].harikerja;
+                     presentase = data[i].presentase;
+                     console.log(totalKehadiran+hariKerja);
+                  }
+
+                  var chartdata = {
+                    labels: ['Absen', 'Dinas', 'Cuti', 'Hadir'],
+                    datasets : [
+                      {
+                        label: 'Index Kehadiran',
+                        data: kehadiran,
+                        backgroundColor: [
+                                '#dd4b39',
+                                '#00c0ef',
+                                '#f39c12',
+                                '#00a65a',
+                            ],
+                            borderColor: [
+                                '#dd4b39',
+                                '#00c0ef',
+                                '#f39c12',
+                                '#00a65a',
+                            ],
+                            borderWidth: 0
+                      }
+                    ]
+                  };
+
+                  var ctx = $('#chartKehadiran').get(0).getContext('2d');
+
+                  var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: chartdata
+                  });
+
+                  $('.kehadiran').html(totalKehadiran);
+                  $('.harikerja').html(hariKerja);
+                  $('.presentase').html(presentase);
+
+                },
+                error: function(data) {
+                  console.log(data);
+                }
+            });
+          } 
+
       });
     </script>
