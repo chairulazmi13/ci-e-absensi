@@ -73,9 +73,12 @@ class pegawaiDashboard extends CI_Controller {
   {
     $id_pegawai = $this->session->userdata('p_id_pegawai');
     $bulan = date('m');
+    $tahun = date('Y');
+    // Untuk memnukan tanggal akhir bulan dengan menghitung total hari perbulan
+    $hari = cal_days_in_month(CAL_GREGORIAN,$bulan,$tahun);
 
     $start = $this->hitunghari->tglindo(date('Y-m-01'));
-    $end   = $this->hitunghari->tglindo(date('Y-m-31'));
+    $end   = $this->hitunghari->tglindo(date('Y-m-'.$hari));
     $harikerja = $this->hitunghari->hitungHariKerja($start,$end,"-");
 
     $data = $this->mAbsensi->indexKehadiran($bulan,$harikerja,$id_pegawai);
