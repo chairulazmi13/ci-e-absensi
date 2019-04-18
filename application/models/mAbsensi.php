@@ -55,6 +55,8 @@ class mAbsensi extends CI_Model {
 		 IFNULL(hd.hadir,0) as masuk,
 		 IFNULL(ct.jumlah_cuti,0) as jumlah_cuti,
 		 IFNULL(dn.jumlah_dinas,0) as jumlah_dinas,
+		 SUM(IFNULL(hd.hadir,0)+IFNULL(ct.jumlah_cuti,0)+IFNULL(dn.jumlah_dinas,0)) AS kehadiran,
+		 '.$harikerja.' as harikerja,
 		 '.$harikerja.' - SUM(IFNULL(hd.hadir,0)+IFNULL(ct.jumlah_cuti,0)+IFNULL(dn.jumlah_dinas,0)) AS absen,
 		 ROUND(SUM(IFNULL(hd.hadir,0)+IFNULL(ct.jumlah_cuti,0)+IFNULL(dn.jumlah_dinas,0)) / '.$harikerja.',2) AS presentase
 		 FROM pegawai as pg
