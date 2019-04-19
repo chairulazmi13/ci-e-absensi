@@ -90,8 +90,9 @@ class mCuti extends CI_Model {
         $data[] = array(
             'id' => $hasil['id_cuti'],
             'title' => 'Cuti :'.$hasil['keterangan'],
-            'start' => $hasil['tanggal_mulai'],
-            'end'   => $hasil['tanggal_selesai'],
+            'start' => $hasil['tanggal_mulai']."T00:00:00",
+            'end'   => $hasil['tanggal_selesai']."T23:59:00",
+            'allDay' => false,
             'color' => 'orange'
           );
     }
