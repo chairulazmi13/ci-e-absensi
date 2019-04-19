@@ -100,11 +100,19 @@ class mAbsensi extends CI_Model {
 		$query = $this->db->query('SELECT*FROM absensi WHERE id_pegawai = '.$id.' AND tanggal BETWEEN "'.$start.'"AND"'.$end.'"');
 		$data[] = 'Event Absensi';
 		foreach ($query->result_array() as $hasil) {
+		  $masuk = strtotime($hasil['jam_masuk']);
+		  
+		  if ($hasil['jam_pulang'] == null) {
+		  	$pulang = strtotime('00:00:00');
+		  } else {
+		  	$pulang = strtotime($hasil['jam_pulang']);
+		  }
+		  
 	      $data[] = array(
 	      	  'id' => $hasil['id_absensi'],
-	          'title' => $hasil['keterangan'],
-	          'start' => $hasil['tanggal'],
-	          'end'   => $hasil['tanggal'],
+	          'title' => 'in : '.date('H:i',$masuk).' out : '.date('H:i',$pulang),
+	          'start' => $hasil['jam_masuk'],
+	          'end'   => $hasil['jam_pulang'],
 	          'color' => 'green'
 	        );
 	    }
