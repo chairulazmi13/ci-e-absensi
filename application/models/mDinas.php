@@ -96,21 +96,24 @@ class mDinas extends CI_Model {
     return $this->db->count_all_results();
   }
 
-  function getEvent($id)
+  // ---------------- HALAMAN PEGAWAI ----------------- //
+  function getEvent($id,$start,$end)
   {
-    $where = array(
-      'id_pegawai' => $id
-    );
-    $query = $this->db->get_where('dinas', $where);
+    $query = $this->db->query('SELECT*FROM dinas WHERE id_pegawai = '.$id.' AND tanggal_mulai >= "'.$start.'" AND tanggal_selesai <= "'.$end.'"');
+    $data[] = 'Event Dinas';
+
     foreach ($query->result_array() as $hasil) {
         $data[] = array(
             'id' => $hasil['id_dinas'],
-            'title' => $hasil['keterangan'],
-            'start' => $hasil['tanggal_mulai'],
-            'end'   => $hasil['tanggal_selesai'],
-            'color' => 'blue'
+            'title' => 'Dinas :'.$hasil['keterangan'],
+            'start' => $hasil['tanggal_mulai']."T00:00:00",
+            'end'   => $hasil['tanggal_selesai']."T23:59:00",
+            'allDay' => false,
+            'color' => 'aqua'
           );
-      }
+    }
+
     return $data;
   }
+  // -------------- END HALAMAN PEGAWAI ---------------- //
 }
