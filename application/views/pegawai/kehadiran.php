@@ -51,8 +51,10 @@
           editable: false,
           eventSources : [
             '<?=base_url("pegawai_backend/pegawaikehadiran/getAbsensiFullcalendar")?>',
-            '<?=base_url("pegawai_backend/pegawaikehadiran/getCutiFullcalendar")?>'
-          ]
+            '<?=base_url("pegawai_backend/pegawaikehadiran/getCutiFullcalendar")?>',
+            '<?=base_url("pegawai_backend/pegawaikehadiran/getDinasFullcalendar")?>'
+          ],
+          displayEventTime: false
         });
       });
     </script>
