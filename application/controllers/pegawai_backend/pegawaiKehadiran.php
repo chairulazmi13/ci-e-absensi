@@ -12,6 +12,7 @@ class pegawaiKehadiran extends CI_Controller {
   	$this->load->model('mPegawai');
     $this->load->model('mAbsensi');
     $this->load->model('mCuti');
+    $this->load->model('mDinas');
 
   }
 
@@ -47,6 +48,17 @@ class pegawaiKehadiran extends CI_Controller {
 
     $id = $this->session->userdata('p_id_pegawai');
     $response = $this->mCuti->getEvent($id,$start,$end);
+    echo json_encode($response);
+  }
+
+  function getDinasFullcalendar()
+  {
+    // FullCalendar V2 sends ISO8601 date strings
+    $start = date($this->input->get('start'));
+    $end   = date($this->input->get('end'));
+
+    $id = $this->session->userdata('p_id_pegawai');
+    $response = $this->mDinas->getEvent($id,$start,$end);
     echo json_encode($response);
   }
 
