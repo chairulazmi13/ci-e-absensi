@@ -39,7 +39,7 @@ class pegawaiPermohonanCuti extends CI_Controller {
 
   function insert() // insert atau mengirim permohonan cuti
   {
-    $id = $this->input->post('id_cuti');
+    $id = $this->mCuti->createIdCuti();
     $id_pegawai    = $this->session->userdata("p_id_pegawai");
     $tgl_pengajuan = date('Y-m-d');
     $tgl_mulai     = $this->input->post('tanggalMulai');
