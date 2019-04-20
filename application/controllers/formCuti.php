@@ -181,6 +181,7 @@ class formCuti extends CI_Controller {
 
   function insert()
   {
+    $id = $this->mCuti->createIdCuti();
     $id_pegawai    = $this->input->post('id_pegawai');
     $tgl_pengajuan = date('Y-m-d');
     $tgl_mulai     = $this->input->post('tgl_mulai');
@@ -225,6 +226,7 @@ class formCuti extends CI_Controller {
 		    } else {
 
 	          $data = array(
+              'id_cuti' => $id,
 	            'id_pegawai' => $id_pegawai,
 	            'tanggal_pengajuan' => $tgl_pengajuan,
 	            'tanggal_mulai' => $tgl_mulai,
