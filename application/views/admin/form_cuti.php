@@ -201,12 +201,14 @@
                   <thead>
                     <tr>
                       <th>No</th>
+                      <th>Nomor Cuti</th>
+                      <th>Status</th>
                       <th>Nama Pegawai</th>
                       <th>Tanggal Pegajuan</th>
                       <th>Tanggal Cuti</th>
                       <th>Jumlah hari</th>
                       <th>Jenis Cuti</th>
-                      <th>Status</th>
+                      <th>Keterangan</th>
                       <th>File</th>
                       <th>Approval</th>
                       <th>Action</th>
@@ -243,19 +245,9 @@
                                   return meta.row + meta.settings._iDisplayStart + 1;
                               }
                     },
-                    { data: "nama", targets: 1 },
-                    { data: "tanggal_pengajuan", targets: 2 },
+                    { data: "id_cuti", targets: 1 },
                     {
-                      targets: 3,
-                      data:null,
-                      render: function ( data, type, row, meta ) {
-                                  return row.tanggal_mulai+' sampai '+row.tanggal_selesai;
-                              }
-                    },
-                    { data: "jumlah_hari", targets: 4 },
-                    { data: "jenis_cuti", targets: 5 },
-                    {
-                      targets: 6 ,
+                      targets: 2 ,
                       data: null,
                       render: function ( data, type, row, meta ) {
                                   if (row.approve == 1) {
@@ -268,9 +260,22 @@
                                   return a;
                               }
                     },
+                    { data: "nama", targets: 3 },
+                    { data: "tanggal_pengajuan", targets: 4 },
+                    {
+                      targets: 5,
+                      data:null,
+                      render: function ( data, type, row, meta ) {
+                                  return row.tanggal_mulai+' sampai '+row.tanggal_selesai;
+                              }
+                    },
+                    { data: "jumlah_hari", targets: 6 },
+                    { data: "jenis_cuti", targets: 7 },
+                    { data: "keterangan", targets: 8 },
+                    
                     {
                       data: "file",
-                      targets: 7 ,
+                      targets: 9 ,
                       render: function ( data, type, row, meta ) {
                         if (data == null) {
                           var a = 'Belum upload';
@@ -283,7 +288,7 @@
                     {
                       searchable: false,
                       orderable : false,
-                      targets: 8,
+                      targets: 10,
                       data: null,
                       render: function ( data, type, row, meta ) {
                                   if (row.approve == 1) {
@@ -297,7 +302,7 @@
                     {
                       searchable: false,
                       orderable : false,
-                      targets: 9,
+                      targets: 11,
                       data:null,
                       render: function ( data, type, row, meta ) {
                                     if (row.approve == 1) {
