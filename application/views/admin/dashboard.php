@@ -65,7 +65,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Pegawai Sedang</span>
               <span class="info-box-text">Dinas Luar Kota</span>
-              <span class="info-box-number"><?$widget_dinas?></span>
+              <span class="info-box-number"><?=$widget_dinas?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
