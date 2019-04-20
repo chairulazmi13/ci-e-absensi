@@ -5,7 +5,7 @@ class mCuti extends CI_Model {
 
   function createIdCuti()
   {
-      $this->db->select('RIGHT(cuti.id_cuti,17) as kode', FALSE);
+      $this->db->select('LEFT(cuti.id_cuti,17) as kode', FALSE);
       $this->db->order_by('id_cuti','DESC');    
       $this->db->limit(1);    
       $query = $this->db->get('cuti');      //cek dulu apakah ada sudah ada kode di tabel.    
