@@ -178,7 +178,7 @@
         function listAdmin() {
           $.ajax({
                 type : "ajax",
-                url  : "<?php echo base_url('pegawaipermohonancuti/listAdmin')?>",
+                url  : "<?php echo base_url('pegawai_backend/pegawaipermohonancuti/listAdmin')?>",
                 dataType : "json",
                 success: function (data) {
                     var value = "";
