@@ -227,8 +227,8 @@ desired effect
           </a>
           <ul class="treeview-menu" style="display: none;">
             <li><a href="<?php echo base_url('laporanAbsensi/laporan_absensi'); ?>">laporan Absensi</a></li>
-            <li><a href="#">laporan Cuti</a></li>
-            <li><a href="#">laporan Dinas Luar Kota</a></li>
+<!--             <li><a href="#">laporan Cuti</a></li>
+            <li><a href="#">laporan Dinas Luar Kota</a></li> -->
             <li><a href="<?php echo base_url('laporanAbsensi/laporan_summary_absensi'); ?>">laporan Summary Absensi</a></li>
           </ul>
         </li>
