@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17 Apr 2019 pada 08.33
+-- Generation Time: 21 Apr 2019 pada 14.51
 -- Versi Server: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -61,7 +61,7 @@ INSERT INTO `absensi` (`id_absensi`, `id_pegawai`, `tanggal`, `mulai_masuk`, `ja
 --
 
 CREATE TABLE `cuti` (
-  `id_cuti` int(11) NOT NULL,
+  `id_cuti` varchar(50) NOT NULL,
   `id_pegawai` int(11) DEFAULT NULL,
   `tanggal_pengajuan` date DEFAULT NULL,
   `tanggal_mulai` date DEFAULT NULL,
@@ -73,17 +73,6 @@ CREATE TABLE `cuti` (
   `approve_by` varchar(50) DEFAULT NULL,
   `file` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `cuti`
---
-
-INSERT INTO `cuti` (`id_cuti`, `id_pegawai`, `tanggal_pengajuan`, `tanggal_mulai`, `tanggal_selesai`, `jumlah_hari`, `jenis_cuti`, `keterangan`, `approve`, `approve_by`, `file`) VALUES
-(1, 8, '2019-03-30', '2019-04-01', '2019-04-03', 3, 'tahunan', 'Keperluan keluarga', 2, 'azmi013', '8b08992cf150d51eb481cfac6d55408e.png'),
-(2, 10, '2019-04-12', '2019-04-22', '2019-04-22', 1, 'tahunan', 'Keperluan Pribadi', 0, 'azmi013', '04f84043c7640793c38e25a39583ddb7.PNG'),
-(4, 10, '2019-04-12', '2019-04-23', '2019-04-23', 1, 'tahunan', 'Keperluan Keluarga', 0, 'azmi013', NULL),
-(5, 8, '2019-04-12', '2019-04-22', '2019-04-22', 1, 'tahunan', 'Keperluan Pribadi', 1, 'azmi013', NULL),
-(6, 8, '2019-04-12', '2019-04-24', '2019-04-24', 1, 'sakit', 'Check Up', 1, 'azmi013', NULL);
 
 -- --------------------------------------------------------
 
@@ -98,14 +87,6 @@ CREATE TABLE `detailcuti` (
   `tanggal_cuti` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `detailcuti`
---
-
-INSERT INTO `detailcuti` (`id_pegawai`, `id_cuti`, `tanggal_pengajuan`, `tanggal_cuti`) VALUES
-(8, 5, '2019-04-12', '2019-04-22'),
-(8, 6, '2019-04-12', '2019-04-24');
-
 -- --------------------------------------------------------
 
 --
@@ -118,17 +99,6 @@ CREATE TABLE `detaildinas` (
   `tanggal_pengajuan` date DEFAULT NULL,
   `tanggal_dinas` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-
---
--- Dumping data untuk tabel `detaildinas`
---
-
-INSERT INTO `detaildinas` (`id_dinas`, `id_pegawai`, `tanggal_pengajuan`, `tanggal_dinas`) VALUES
-('DNL-0001', 6, '2019-04-02', '2019-04-08'),
-('DNL-0001', 6, '2019-04-02', '2019-04-09'),
-('DNL-0001', 6, '2019-04-02', '2019-04-10'),
-('DNL-0002', 8, '2019-04-14', '2019-04-29'),
-('DNL-0002', 8, '2019-04-14', '2019-04-30');
 
 -- --------------------------------------------------------
 
@@ -147,14 +117,6 @@ CREATE TABLE `dinas` (
   `file` text,
   `tempat` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-
---
--- Dumping data untuk tabel `dinas`
---
-
-INSERT INTO `dinas` (`id_dinas`, `id_pegawai`, `tanggal_pengajuan`, `tanggal_mulai`, `tanggal_selesai`, `jumlah_hari`, `keterangan`, `file`, `tempat`) VALUES
-('DNL-0001', 6, '2019-04-02', '2019-04-08', '2019-04-10', 3, 'Meeting', NULL, 'Jakarta'),
-('DNL-0002', 8, '2019-04-14', '2019-04-29', '2019-04-30', 2, 'Rapat', NULL, 'Jakarta');
 
 -- --------------------------------------------------------
 
@@ -280,24 +242,6 @@ CREATE TABLE `log_activity` (
   `keterangan` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `log_activity`
---
-
-INSERT INTO `log_activity` (`id_log`, `nip`, `nama`, `tanggal`, `time`, `keterangan`) VALUES
-(21, '311111111111111000', 'Chairul Azmi', '2019-03-31', '2019-03-31 16:12:38', 'Masuk Telat 08:12:38'),
-(22, '311111111111111000', 'Chairul Azmi', '2019-03-31', '2019-03-31 16:16:43', 'pulang'),
-(23, '311111111111111000', 'Chairul Azmi', '2019-03-01', '2019-03-31 16:18:13', 'Masuk Telat 08:18:13'),
-(24, '311111111111111000', 'Chairul Azmi', '2019-03-01', '2019-03-01 16:20:49', 'Masuk Telat 15:39:11'),
-(25, '311111111111111000', 'Chairul Azmi', '2019-03-01', '2019-03-01 16:22:27', 'pulang'),
-(26, '111111111111111000', 'Likhit Ari Prabowo', '2019-03-01', '2019-03-01 16:28:16', 'Masuk Telat 15:31:44'),
-(27, '111111111111111000', 'Likhit Ari Prabowo', '2019-03-01', '2019-03-01 16:28:27', 'pulang'),
-(28, '111111111111111000', 'Likhit Ari Prabowo', '2019-03-04', '2019-03-04 16:28:42', 'Masuk Telat 15:31:18'),
-(29, '111111111111111000', 'Likhit Ari Prabowo', '2019-03-04', '2019-03-04 16:28:47', 'pulang'),
-(30, '311111111111111000', 'Chairul Azmi', '2019-04-04', '2019-04-04 09:32:43', 'Masuk Telat 01:32:43'),
-(31, '311111111111111000', 'Chairul Azmi', '2019-04-05', '2019-04-05 09:47:07', 'Masuk Telat 01:47:07'),
-(32, '311111111111111000', 'Chairul Azmi', '2019-04-15', '2019-04-15 11:12:13', 'Masuk Telat 03:12:13');
-
 -- --------------------------------------------------------
 
 --
@@ -325,9 +269,9 @@ CREATE TABLE `pegawai` (
 
 INSERT INTO `pegawai` (`id`, `nip`, `nama`, `kota`, `alamat`, `id_divisi`, `id_jabatan`, `aktif_pegawai`, `password_pegawai`, `ip_address`, `last_activity`, `qr_code`) VALUES
 (6, '111111111111111000', 'Likhit Ari Prabowo', 'Brebes', 'GandaSuli', 17, 11, 1, '25d55ad283aa400af464c76d713c07ad', '192.168.1.10', '2019-03-31 08:21:57', '111111111111111000.png'),
-(8, '311111111111111000', 'Chairul Azmi', 'Tegal', 'Tembok Kidul RT 22, RW 02 No. 27 Kec. Adiwerna', 17, 12, 1, '25d55ad283aa400af464c76d713c07ad', '192.168.1.102', '2019-04-14 15:16:35', '311111111111111000.png'),
-(10, '196301031989031007', 'Drs. H. Abdul Ghofur, SH. MH', 'Pemalang', 'Jl. Yos Sudarso', 1, 1, 1, '1dfe1a2512540f48e36cef6d005c27a9', NULL, '2019-04-15 18:24:15', '196301031989031000.png'),
-(11, '195802061996031003', 'Drs.Muhammad Akyas', 'Cirebon', 'Cirebon', 16, 3, 1, '99b398ad5a773af9c5fa9132b6893cb6', '', '2019-04-11 14:01:53', NULL);
+(8, '311111111111111000', 'Chairul Azmi', 'Tegal', 'Tembok Kidul RT 22, RW 02 No. 27 Kec. Adiwerna', 17, 12, 1, '25d55ad283aa400af464c76d713c07ad', '192.168.1.102', '2019-04-21 12:07:41', '311111111111111000.png'),
+(10, '196301031989031007', 'Drs. H. Abdul Ghofur, SH. MH', 'Pemalang', 'Jl. Yos Sudarso', 1, 1, 1, '1dfe1a2512540f48e36cef6d005c27a9', NULL, '2019-04-18 03:08:15', '196301031989031000.png'),
+(11, '195802061996031003', 'Drs.Muhammad Akyas', 'Cirebon', 'Cirebon', 16, 3, 1, '99b398ad5a773af9c5fa9132b6893cb6', '', '2019-04-21 11:59:37', '195802061996031000.png');
 
 -- --------------------------------------------------------
 
@@ -458,15 +402,10 @@ ALTER TABLE `user`
 ALTER TABLE `absensi`
   MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
--- AUTO_INCREMENT for table `cuti`
---
-ALTER TABLE `cuti`
-  MODIFY `id_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
 -- AUTO_INCREMENT for table `divisi`
 --
 ALTER TABLE `divisi`
-  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `harilibur`
 --
@@ -476,7 +415,7 @@ ALTER TABLE `harilibur`
 -- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
-  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `level`
 --
@@ -491,7 +430,7 @@ ALTER TABLE `log_activity`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `pengaturan`
 --
