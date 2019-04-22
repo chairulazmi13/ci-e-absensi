@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class pegawaiDashboard extends CI_Controller {
+class PegawaiDashboard extends CI_Controller {
   function __construct(){
   	parent::__construct();
 

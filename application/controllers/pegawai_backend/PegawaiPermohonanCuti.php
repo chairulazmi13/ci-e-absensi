@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class pegawaiPermohonanCuti extends CI_Controller {
+class PegawaiPermohonanCuti extends CI_Controller {
   function __construct(){
   	parent::__construct();
   	if($this->session->userdata('pegawai_login') == 0){

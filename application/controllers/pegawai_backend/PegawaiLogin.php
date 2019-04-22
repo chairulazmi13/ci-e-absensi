@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class pegawaiLogin extends CI_Controller {
+class PegawaiLogin extends CI_Controller {
   function __construct(){
   	parent::__construct();
     $this->load->helper('form');

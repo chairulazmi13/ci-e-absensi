@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class formDinas extends CI_Controller {
+class FormDinas extends CI_Controller {
   function __construct(){
   	parent::__construct();
 
