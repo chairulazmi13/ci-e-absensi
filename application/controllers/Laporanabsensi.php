@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class LaporanAbsensi extends CI_Controller {
+class Laporanabsensi extends CI_Controller {
 	function __construct(){
   	parent::__construct();
 

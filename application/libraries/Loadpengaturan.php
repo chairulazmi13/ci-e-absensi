@@ -1,6 +1,6 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
  
-class LoadPengaturan
+class Loadpengaturan
 {
 	private $CI = null; 
     function __construct()

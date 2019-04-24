@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PegawaiInboxCuti extends CI_Controller {
+class Pegawaiinboxcuti extends CI_Controller {
   function __construct(){
   	parent::__construct();
 
