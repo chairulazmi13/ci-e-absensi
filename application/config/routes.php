@@ -62,25 +62,36 @@ $route['front-absensi'] = 'frontAbsensi';
 $route['admin-login'] = 'login';
 
 // cDivisi
-$route['alldivisi'] = 'divisi/AllDivisi';
-$route['divisibyid'] = 'divisi/DivisiByID';
-$route['insertdivisi'] = 'divisi/insertDivisi';
-$route['deletedivisi'] = 'divisi/deleteDivisi';
-$route['updatedivisi'] = 'divisi/updateDivisi';
+$route['alldivisi'] = 'Divisi/AllDivisi';
+$route['divisibyid'] = 'Divisi/DivisiByID';
+$route['insertdivisi'] = 'Divisi/insertDivisi';
+$route['deletedivisi'] = 'Divisi/deleteDivisi';
+$route['updatedivisi'] = 'Divisi/updateDivisi';
 
 // cjabatan
-$route['alljabatan'] = 'jabatan/AllJabatan';
-$route['jabatanbyid'] = 'jabatan/JabatanByID';
-$route['insertjabatan'] = 'jabatan/insertJabatan';
-$route['deletejabatan'] = 'jabatan/deleteJabatan';
-$route['updatejabatan'] = 'jabatan/updateJabatan';
+$route['alljabatan'] = 'Jabatan/AllJabatan';
+$route['jabatanbyid'] = 'Jabatan/JabatanByID';
+$route['insertjabatan'] = 'Jabatan/insertJabatan';
+$route['deletejabatan'] = 'Jabatan/deleteJabatan';
+$route['updatejabatan'] = 'Jabatan/updateJabatan';
+
+// form_absensi
+$route['absensitoday'] = 'Formabsensi/absensiToday';
+$route['absensi'] = 'Formabsensi/absensi';
+
+// form_cuti
+$route['getallcuti'] = 'Formcuti/getAllCuti';
+$route['insertcuti'] = 'Formabsensi/insert';
+$route['approvalcuti'] = 'Formcuti/statusApproval';
+$route['hapuscuti'] = 'Formcuti/hapusCuti';
+$route['absensi'] = 'Formabsensi/absensi';
 
 // backend Pegawai
-$route['pegawai-dashboard'] = 'pegawai_backend/pegawaiDashboard';
-$route['pegawai-inbox']     = 'pegawai_backend/pegawaiInboxCuti';
-$route['pegawai-kehadiran'] = 'pegawai_backend/pegawaiKehadiran';
-$route['pegawai-permohonan-cuti'] = 'pegawai_backend/pegawaiPermohonanCuti/buat';
-$route['pegawai-login'] = 'pegawai_backend/pegawaiLogin';
-$route['pegawai-logout'] = 'pegawai_backend/pegawaiLogin/logout';
-$route['pegawai-generate-qrcode'] = 'pegawai_backend/pegawaiDashboard/gerateQrCode';
-$route['download-file'] = 'pegawai_backend/pegawaiInboxCuti/download';
+$route['pegawai-dashboard'] = 'pegawai_backend/Pegawaidashboard';
+$route['pegawai-inbox']     = 'pegawai_backend/Pegawaiinboxcuti';
+$route['pegawai-kehadiran'] = 'pegawai_backend/Pegawaikehadiran';
+$route['pegawai-permohonan-cuti'] = 'pegawai_backend/Pegawaipermohonancuti/buat';
+$route['pegawai-login'] = 'pegawai_backend/Pegawailogin';
+$route['pegawai-logout'] = 'pegawai_backend/Pegawailogin/logout';
+$route['pegawai-generate-qrcode'] = 'pegawai_backend/Pegawaidashboard/gerateQrCode';
+$route['download-file'] = 'pegawai_backend/Pegawaiinboxcuti/download';
