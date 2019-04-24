@@ -136,7 +136,7 @@
           }
           else {
             $.ajax({
-              url: '<?=base_url("pegawai_backend/pegawaipermohonancuti/insert")?>',
+              url: '<?=base_url("pegawai_backend/Pegawaipermohonancuti/insert")?>',
               type: 'POST',
               dataType: 'json',
               timeout: 5000,
@@ -178,7 +178,7 @@
         function listAdmin() {
           $.ajax({
                 type : "ajax",
-                url  : "<?php echo base_url('pegawai_backend/pegawaipermohonancuti/listAdmin')?>",
+                url  : "<?php echo base_url('pegawai_backend/Pegawaipermohonancuti/listAdmin')?>",
                 dataType : "json",
                 success: function (data) {
                     var value = "";

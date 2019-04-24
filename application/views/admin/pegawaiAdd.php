@@ -124,7 +124,7 @@
                       } else {
                           $.ajax({
                             type : "POST",
-                            url  : "<?php echo base_url('pegawai/insertPegawai')?>",
+                            url  : "<?php echo base_url('Pegawai/insertPegawai')?>",
                             dataType : "JSON",
                             timeout:5000,
                             data : {nip:nip, nama:nama, kota:kota, alamat:alamat, divisi:divisi, jabatan:jabatan},

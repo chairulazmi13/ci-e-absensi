@@ -346,7 +346,7 @@
       var keterangan = $('#tKeterangan').val();
 
       $.ajax({
-        url: '<?=base_url("formDinas/insert")?>',
+        url: '<?=base_url("Formdinas/insert")?>',
         type: 'POST',
         dataType: 'json',
         data: {
@@ -393,7 +393,7 @@
       .then((hapus) => {
         if (hapus) {
           $.ajax({
-            url: '<?=base_url("formDinas/hapusDinas")?>',
+            url: '<?=base_url("Formdinas/hapusDinas")?>',
             type: 'POST',
             dataType: 'json',
             data: {id_dinas: id},
@@ -413,7 +413,7 @@
             var id=$(this).attr('data');
             $.ajax({
                 type : "GET",
-                url  : "<?php echo base_url('formDinas/getDinasByID')?>",
+                url  : "<?php echo base_url('Formdinas/getDinasByID')?>",
                 dataType : "JSON",
                 data : {id_dinas:id},
                 success: function(data){
@@ -444,7 +444,7 @@
       var toDate = $('#toDate').val();
 
       $.ajax({
-        url: '<?=base_url("formDinas/updateDinas")?>',
+        url: '<?=base_url("Formdinas/updateDinas")?>',
         type: 'POST',
         dataType: 'json',
         data: {
@@ -480,7 +480,7 @@
             var toDate = $('#toDate').val();
 
                   $.ajax({
-                     url:'<?=base_url("formDinas/uploadFiles")?>',
+                     url:'<?=base_url("Formdinas/uploadFiles")?>',
                      type:'POST',
                      data:new FormData(this),
                      processData:false,
@@ -517,7 +517,7 @@
             processing : true,
             ajax: {
               type  : 'ajax',
-              url: '<?=base_url("formDinas/getDinasByDate/")?>'+fromDate+'/'+toDate,
+              url: '<?=base_url("Formdinas/getDinasByDate/")?>'+fromDate+'/'+toDate,
               dataType : 'json',
             },
             columnDefs: [
@@ -547,7 +547,7 @@
                         if (data == null) {
                           var a = 'Belum upload';
                         } else {
-                          var a = '<a href="<?=base_url('formDinas/download/')?>'+data+'">Download</a>';
+                          var a = '<a href="<?=base_url('Formdinas/download/')?>'+data+'">Download</a>';
                         }
                         return a;
                       }

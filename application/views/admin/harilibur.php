@@ -124,14 +124,14 @@
         var calendar = $('#full-calendar').fullCalendar({
           disableDragging: false,
           editable: true,
-          events : '<?=base_url("harilibur/getFullcalendar")?>',
+          events : '<?=base_url("Harilibur/getFullcalendar")?>',
         });
 
         var table = $('.table').DataTable({
             processing : true,
             ajax: {
               type  : "ajax",
-              url: "<?php echo base_url("harilibur/getAllhariLibur")?>",
+              url: "<?php echo base_url("Harilibur/getAllhariLibur")?>",
               dataType : "json"
             },
             columnDefs: [
@@ -161,7 +161,7 @@
           var tanggal = $('#text-tanggal').val();
           var keterangan = $('#text-keterangan').val();
           $.ajax({
-            url: '<?=base_url("harilibur/insertHariLibur")?>',
+            url: '<?=base_url("Harilibur/insertHariLibur")?>',
             type: 'POST',
             dataType: 'json',
             timeout: 5000,
@@ -196,7 +196,7 @@
           var tanggal = $('#edit-tanggal').val();
           var keterangan = $('#edit-keterangan').val();
           $.ajax({
-            url: '<?=base_url("harilibur/updateHariLibur")?>',
+            url: '<?=base_url("Harilibur/updateHariLibur")?>',
             type: 'POST',
             dataType: 'json',
             timeout: 1000,
@@ -227,7 +227,7 @@
           var id = $(this).attr('data');
             $.ajax({
                 type : "GET",
-                url  : "<?=base_url("harilibur/getHariLibur")?>",
+                url  : "<?=base_url("Harilibur/getHariLibur")?>",
                 dataType : "JSON",
                 data : {id:id},
                 success: function(data){
@@ -258,7 +258,7 @@
           .then((hapus) => {
             if (hapus) {
               $.ajax({
-                url: '<?=base_url("harilibur/deleteHariLibur")?>',
+                url: '<?=base_url("Harilibur/deleteHariLibur")?>',
                 type: 'POST',
                 dataType: 'json',
                 data: {id: id},

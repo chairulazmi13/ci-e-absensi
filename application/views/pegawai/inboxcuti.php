@@ -51,7 +51,7 @@
 
                   // Load data for the table's content from an Ajax source
                   "ajax": {
-                      "url": "<?php echo site_url('pegawai_backend/pegawaiInboxCuti/table_cuti')?>",
+                      "url": "<?php echo site_url('pegawai_backend/Pegawaiinboxcuti/table_cuti')?>",
                       "type": "POST"
                   },
 

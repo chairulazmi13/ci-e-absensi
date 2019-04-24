@@ -116,7 +116,7 @@
             processing : true,
             ajax: {
               type  : "ajax",
-              url: "<?php echo base_url("formAbsensi/absensiToday")?>",
+              url: "<?php echo base_url("absensitoday")?>",
               dataType : "json"
             },
             columnDefs: [
@@ -174,7 +174,7 @@
 
       $.ajax({
         type : "POST",
-        url  : "<?php echo site_url('formAbsensi/absensi')?>",
+        url  : "<?php echo site_url('absensi')?>",
         dataType : "JSON",
         data : {
           nip:nip,

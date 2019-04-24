@@ -102,7 +102,7 @@
           var tgl = getDate();
           $.ajax({
             type : "POST",
-            url  : "<?php echo site_url('frontAbsensi/insert')?>",
+            url  : "<?php echo site_url('Frontabsensi/insert')?>",
             dataType : "JSON",
             data : { qrcode:qrcode,tanggal:tgl},
             beforeSend:function(){  

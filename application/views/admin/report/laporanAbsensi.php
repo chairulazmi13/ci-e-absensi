@@ -101,7 +101,7 @@
         var bulan = $('#bulan').val();
         var tahun = $('#tahun').val();
         $.ajax({
-          url: '<?=base_url("laporanAbsensi/report")?>',
+          url: '<?=base_url("Laporanabsensi/report")?>',
           type: 'POST',
           dataType : 'html',
           data: {bulan: bulan,tahun:tahun},

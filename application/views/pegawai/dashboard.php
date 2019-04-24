@@ -84,7 +84,7 @@
          // ---------- FUNCTION ------------- //
          function getChart() {
               $.ajax({
-                url: "<?=base_url('pegawai_backend/pegawaidashboard/getIndexPerBulan')?>",
+                url: "<?=base_url('pegawai_backend/Pegawaidashboard/getIndexPerBulan')?>",
                 method: "GET",
                 dataType : "JSON",
                 success: function(data) {

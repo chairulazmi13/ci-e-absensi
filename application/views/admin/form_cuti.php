@@ -233,7 +233,7 @@
             processing : true,
             ajax: {
               type  : "ajax",
-              url: "<?php echo base_url("formCuti/getAllCuti")?>",
+              url: "<?php echo base_url("getallcuti")?>",
               dataType : "json"
             },
             columnDefs: [
@@ -280,7 +280,7 @@
                         if (data == null) {
                           var a = 'Belum upload';
                         } else {
-                          var a = '<a href="<?=base_url("formCuti/download/")?>'+data+'">Download</a>';
+                          var a = '<a href="<?=base_url("Formcuti/download/")?>'+data+'">Download</a>';
                         }
                         return a;
                       }
@@ -384,7 +384,7 @@
       var keterangan = $('#tKeterangan').val();
 
       $.ajax({
-        url: '<?=base_url("formCuti/insert")?>',
+        url: '<?=base_url("insertcuti")?>',
         type: 'POST',
         dataType: 'json',
         data: {
@@ -420,7 +420,7 @@
       .then((approve) => {
         if (approve) {
           $.ajax({
-            url: '<?=base_url("formCuti/statusApproval")?>',
+            url: '<?=base_url("approvalcuti")?>',
             type: 'POST',
             dataType: 'json',
             data: {id_cuti: id,approve:'1'},
@@ -453,7 +453,7 @@
       .then((decline) => {
         if (decline) {
           $.ajax({
-            url: '<?=base_url("formCuti/statusApproval")?>',
+            url: '<?=base_url("approvalcuti")?>',
             type: 'POST',
             dataType: 'json',
             data: {id_cuti: id,approve:'2'},
@@ -480,7 +480,7 @@
       .then((pending) => {
         if (pending) {
           $.ajax({
-            url: '<?=base_url("formCuti/statusApproval")?>',
+            url: '<?=base_url("approvalcuti")?>',
             type: 'POST',
             dataType: 'json',
             data: {id_cuti: id,approve:'0'},
@@ -517,7 +517,7 @@
       .then((hapus) => {
         if (hapus) {
           $.ajax({
-            url: '<?=base_url("formCuti/hapusCuti")?>',
+            url: '<?=base_url("hapuscuti")?>',
             type: 'POST',
             dataType: 'json',
             data: {id_cuti: id},
@@ -536,7 +536,7 @@
             var id=$(this).attr('data');
             $.ajax({
                 type : "GET",
-                url  : "<?php echo base_url('formCuti/getCuti')?>",
+                url  : "<?php echo base_url('Formcuti/getCuti')?>",
                 dataType : "JSON",
                 data : {id_cuti:id},
                 success: function(data){
@@ -566,7 +566,7 @@
       var approve = $('#edit_approve').val();
 
       $.ajax({
-        url: '<?=base_url("formCuti/updateCuti")?>',
+        url: '<?=base_url("Formcuti/updateCuti")?>',
         type: 'POST',
         dataType: 'json',
         data: {
@@ -594,7 +594,7 @@
     // ------- tombol simpan upload -----------------
     $('#submit').submit(function(e){
                   $.ajax({
-                     url:'<?=base_url("formCuti/uploadFiles")?>',
+                     url:'<?=base_url("Formcuti/uploadFiles")?>',
                      type:'POST',
                      data:new FormData(this),
                      processData:false,

@@ -93,7 +93,7 @@
         var startTgl = $('#startTgl').val();
         var endTgl = $('#endTgl').val();
         $.ajax({
-          url: '<?=base_url("laporanAbsensi/summaryAbsensi")?>',
+          url: '<?=base_url("Laporanabsensi/summaryAbsensi")?>',
           type: 'POST',
           dataType : 'html',
           data: {startTgl: startTgl,endTgl:endTgl},

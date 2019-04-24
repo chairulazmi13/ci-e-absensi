@@ -155,7 +155,7 @@
             processing : true,
             ajax: {
               type  : "ajax",
-              url: "<?=base_url("user/getAllUser")?>",
+              url: "<?=base_url("User/getAllUser")?>",
               dataType : "json"
             },
             columnDefs: [

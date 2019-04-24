@@ -38,7 +38,7 @@
 
     <p class="login-box-msg">Halaman login pegawai</p>
 
-    <form action="<?=base_url('pegawai_backend/pegawailogin/login'); ?>" method="post">
+    <form action="<?=base_url('pegawai_backend/Pegawailogin/login'); ?>" method="post">
       <div class="form-group has-feedback">
         <input type="text" name="nip" class="form-control" placeholder="NIP">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>

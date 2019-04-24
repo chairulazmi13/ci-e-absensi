@@ -61,7 +61,7 @@
             swal('warning','Password minimal 8 karakter','warning');
           } else {
             $.ajax({
-                url:'<?=base_url("user/updatePassword")?>',
+                url:'<?=base_url("User/updatePassword")?>',
                 method:'POST',
                 data:formData,
                 dataType:'json',

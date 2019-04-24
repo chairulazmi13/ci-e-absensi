@@ -73,7 +73,7 @@
       $('#simpan').click(function(event) {
           var formData = $('form').serialize();
             $.ajax({
-                url:'<?=base_url("cPengaturan/updatePengaturan")?>',
+                url:'<?=base_url("Cpengaturan/updatePengaturan")?>',
                 method:'POST',
                 data:formData,
                 dataType:'json',
@@ -93,7 +93,7 @@
 
       function getdata() {
         $.ajax({
-          url: '<?=base_url("cPengaturan/loadPengaturan")?>',
+          url: '<?=base_url("Cpengaturan/loadPengaturan")?>',
           type: 'GET',
           dataType: 'json',
           success: function (data) {

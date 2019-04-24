@@ -207,7 +207,7 @@
             processing : true,
             ajax: {
               type  : "ajax",
-              url: "<?php echo base_url("pegawai/getAllPegawai")?>",
+              url: "<?php echo base_url("Pegawai/getAllPegawai")?>",
               dataType : "json"
             },
             columnDefs: [
@@ -241,7 +241,7 @@
 
       // Tambah Pegawai
       $('#addPegawai').on('click',function(){
-          $("#form_input").load('<?=site_url("pegawai/forminsert")?>');
+          $("#form_input").load('<?=site_url("Pegawai/forminsert")?>');
           $('#form_input').fadeIn('slow');
         });
 
@@ -262,7 +262,7 @@
             var id=$('[name="id_pegawai"]').val();
             $.ajax({
               type : "POST",
-              url  : "<?php echo base_url('pegawai/deletePegawai')?>",
+              url  : "<?php echo base_url('Pegawai/deletePegawai')?>",
               dataType : "JSON",
               timeout : 5000,
               data : {id:id},
@@ -295,7 +295,7 @@
             var id=$(this).attr('data');
             $.ajax({
                 type : "GET",
-                url  : "<?php echo base_url('pegawai/getPegawaiID')?>",
+                url  : "<?php echo base_url('Pegawai/getPegawaiID')?>",
                 dataType : "JSON",
                 data : {id:id},
                 success: function(data){
@@ -337,7 +337,7 @@
         } else {
             $.ajax({
                 type : "POST",
-                url  : "<?php echo base_url('pegawai/updatePegawai')?>",
+                url  : "<?php echo base_url('Pegawai/updatePegawai')?>",
                 dataType : "JSON",
                 timeout:5000,
                 data : {id:id,nip:nip,nama:nama,kota:kota,alamat:alamat,id_divisi:divisi,id_jabatan:jabatan,ip_address:ip},
