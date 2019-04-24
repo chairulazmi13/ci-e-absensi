@@ -5,7 +5,7 @@ class Laporanabsensi extends CI_Controller {
   	parent::__construct();
 
   	if($this->session->userdata('login') == 0){
-  		redirect(base_url('login'));
+  		redirect(base_url('Login'));
   	}
 
 	  	$this->load->model('Mpegawai');

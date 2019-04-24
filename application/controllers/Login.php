@@ -62,7 +62,7 @@ class Login extends CI_Controller {
 					<h4><i class="icon fa fa-ban"></i> Gagal Login!</h4>
 					Akun anda ditangguhkan
 					</div>');
-					redirect('login');
+					redirect('Login');
 				} else {
 					$this->session->set_userdata('login','');
 					$this->session->set_flashdata('login_gagal',
@@ -71,7 +71,7 @@ class Login extends CI_Controller {
 					<h4><i class="icon fa fa-ban"></i> Gagal Login!</h4>
 					Pastikan anda sebagai Admin
 					</div>');
-					redirect('login');
+					redirect('Login');
 				}
 			}
 			else {
@@ -82,7 +82,7 @@ class Login extends CI_Controller {
 					<h4><i class="icon fa fa-ban"></i> Gagal Login!</h4>
 					Username atau Password Salah
 					</div>');
-					redirect('login');
+					redirect('Login');
 			}
 	}
 	}
