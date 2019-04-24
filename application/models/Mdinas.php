@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mDinas extends CI_Model {
+class Mdinas extends CI_Model {
 
   function createIdDinas()
   {

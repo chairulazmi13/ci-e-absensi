@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mDivisi extends CI_Model {
+class Mdivisi extends CI_Model {
 
 	function getAll(){
 		$query = $this->db->get('divisi');

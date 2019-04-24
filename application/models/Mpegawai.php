@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mPegawai extends CI_Model {
+class Mpegawai extends CI_Model {
 
 	function getAll(){
 		$this->db->select('id,aktif_pegawai,nip,nama,kota,alamat,ip_address,last_activity,nama_divisi,nama_jabatan');

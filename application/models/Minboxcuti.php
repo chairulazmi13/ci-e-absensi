@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mInboxCuti extends CI_Model {
+class MinboxCuti extends CI_Model {
 
   var $table = 'cuti';
   var $column_order = array('id_cuti','tanggal_pengajuan','keterangan','tanggal_mulai','tanggal_selesai','Jenis_cuti','approve','file'); //set column field database for datatable orderable

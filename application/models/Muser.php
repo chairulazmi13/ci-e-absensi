@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mUser extends CI_Model {
+class Muser extends CI_Model {
 
 	function cekUsername($where)
 	{

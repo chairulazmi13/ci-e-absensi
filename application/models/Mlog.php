@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mLog extends CI_Model {
+class Mlog extends CI_Model {
 
 function getLog()
 {

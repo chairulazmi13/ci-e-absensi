@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mAbsensi extends CI_Model {
+class Mabsensi extends CI_Model {
 
 	function getByWhere($id)
 	{

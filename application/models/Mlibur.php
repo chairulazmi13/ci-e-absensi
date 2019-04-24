@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mLibur extends CI_Model {
+class Mlibur extends CI_Model {
 	function getAll()
 	{
 		$query = $this->db->get('harilibur');

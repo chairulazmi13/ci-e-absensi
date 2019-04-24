@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mCuti extends CI_Model {
+class Mcuti extends CI_Model {
 
   function createIdCuti()
   {

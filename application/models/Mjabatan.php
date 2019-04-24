@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mJabatan extends CI_Model {
+class Mjabatan extends CI_Model {
 
 	function getAll(){
 		$query = $this->db->query('SELECT*FROM jabatan ORDER BY id_jabatan ASC');
