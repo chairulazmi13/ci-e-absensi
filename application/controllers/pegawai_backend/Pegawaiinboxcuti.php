@@ -9,8 +9,8 @@ class Pegawaiinboxcuti extends CI_Controller {
   		redirect(base_url('pegawai-login'));
   	}
 
-  	$this->load->model('mPegawai');
-    $this->load->model('mInboxCuti');
+  	$this->load->model('Mpegawai');
+    $this->load->model('Minboxcuti');
     $this->load->library('datatables');
 
   }
@@ -32,7 +32,7 @@ class Pegawaiinboxcuti extends CI_Controller {
   public function table_cuti()
   {
     $id_pegawai = $this->session->userdata('p_id_pegawai');
-    $list = $this->mInboxCuti->get_datatables($id_pegawai);
+    $list = $this->Minboxcuti->get_datatables($id_pegawai);
     $data = array();
     $no = $_POST['start'];
     foreach ($list as $cuti) {
@@ -58,8 +58,8 @@ class Pegawaiinboxcuti extends CI_Controller {
 
     $output = array(
       "draw" => $_POST['draw'],
-      "recordsTotal" => $this->mInboxCuti->count_all($id_pegawai),
-      "recordsFiltered" => $this->mInboxCuti->count_filtered($id_pegawai),
+      "recordsTotal" => $this->Minboxcuti->count_all($id_pegawai),
+      "recordsFiltered" => $this->Minboxcuti->count_filtered($id_pegawai),
       "data" => $data,
     );
 

@@ -6,10 +6,10 @@ class Frontabsensi extends CI_Controller {
   function __construct(){
   	parent::__construct();
     $this->load->library('loadpengaturan');
-  	$this->load->model('mPegawai');
-    $this->load->model('mAbsensi');
-    $this->load->model('mLog');
-    $this->load->model('mPengaturan');
+  	$this->load->model('Mpegawai');
+    $this->load->model('Mabsensi');
+    $this->load->model('Mlog');
+    $this->load->model('Mpengaturan');
 
   }
 
@@ -43,7 +43,7 @@ class Frontabsensi extends CI_Controller {
   private function cekTelatAbsensi($masuk)
   { 
     date_default_timezone_set('Asia/Jakarta');
-    $data = $this->mPengaturan->getPengaturan();
+    $data = $this->Mpengaturan->getPengaturan();
     foreach ($data->result_array() as $setelan) {
       $id_setelan = $setelan['id'];
       $mulai_masuk = $setelan['mulai_masuk'];
@@ -69,9 +69,9 @@ class Frontabsensi extends CI_Controller {
     $tanggal = date('Y-m-d');
     $jam_absensi = date('Y-m-d H:i:s');
     $whereNip = array('nip' => $nip, );
-    $cekNIP = $this->mPegawai->getByID($whereNip);
+    $cekNIP = $this->Mpegawai->getByID($whereNip);
 
-    $getPengaturan = $this->mPengaturan->getPengaturan();
+    $getPengaturan = $this->Mpengaturan->getPengaturan();
     foreach ($getPengaturan->result_array() as $setelan) {
       $id_setelan = $setelan['id'];
       $namaPerusahaan = $setelan['nama_perusahaan'];
@@ -91,7 +91,7 @@ class Frontabsensi extends CI_Controller {
       }
 
         $where = array('id_pegawai' => $id_pegawai, 'tanggal' => $tanggal);
-        $cekAbsensi = $this->mAbsensi->getByID($where); //cek NIp apakah tanggal tersebut sudah absen ?
+        $cekAbsensi = $this->Mabsensi->getByID($where); //cek NIp apakah tanggal tersebut sudah absen ?
 
         if ($jam_absensi < $mulai_absensi) {
           $response['msg']  = '<div class="alert alert-warning alert-dismissible">
@@ -156,7 +156,7 @@ class Frontabsensi extends CI_Controller {
             // }
 
             if ($jam_absensi < $mulai_pulang && $cekAbsensi->num_rows()<1){ // jika belum melakukan absensi dan masih dibawah jam kerja
-                  $response['data'] = $this->mAbsensi->insert($in); // akan di input masuk
+                  $response['data'] = $this->Mabsensi->insert($in); // akan di input masuk
                   $response['msg']  = '<div class="alert alert-success alert-dismissible">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                       <h4><i class="icon fa fa-success"></i> Selamat datang '.$nama_pegawai.'</h4>
@@ -164,7 +164,7 @@ class Frontabsensi extends CI_Controller {
                     </div>';
 
                   if ($response['data'] == true) {
-                    $this->mLog->insert($log_in);
+                    $this->Mlog->insert($log_in);
                   }
               }
                 
@@ -185,8 +185,8 @@ class Frontabsensi extends CI_Controller {
                       );
 
                       $where = array('id_pegawai' => $id_pegawai, 'tanggal' => $tanggal); // where id && tanggal
-                      $this->mAbsensi->update($where,$out);
-                      $this->mLog->insert($log_out);
+                      $this->Mabsensi->update($where,$out);
+                      $this->Mlog->insert($log_out);
                       $response['msg']  = '<div class="alert alert-info alert-dismissible">
                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                               <h4><i class="icon fa fa-info"></i> Pulang</h4>

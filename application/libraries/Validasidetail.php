@@ -6,8 +6,8 @@ class Validasidetail
     function __construct()
     {
         $this->CI =& get_instance();
-        $this->CI->load->model('mDinas');
-        $this->CI->load->model('mCuti');
+        $this->CI->load->model('Mdinas');
+        $this->CI->load->model('Mcuti');
     }
 
     public function insertDetailDinas($id_pegawai,$id_dinas,$tgl_pengajuan,$tgl_mulai,$tgl_selesai)
@@ -18,7 +18,7 @@ class Validasidetail
           // Menambhkan detail Dinas
           for($i = $begin; $i <= $end; $i->modify('+1 day')){
               $rangeTanggal = $i->format("Y-m-d");
-              $this->CI->mDinas->insertDetailDinas($id_pegawai,$id_dinas,$tgl_pengajuan,$rangeTanggal);
+              $this->CI->Mdinas->insertDetailDinas($id_pegawai,$id_dinas,$tgl_pengajuan,$rangeTanggal);
           }
     }
 
@@ -26,7 +26,7 @@ class Validasidetail
     {
     	// jika menghapus detailDinas terlebih dahulu
 	    $whereDinas = array('id_dinas' => $id, );
-	    $this->CI->mDinas->deleteDetailDinas($whereDinas);
+	    $this->CI->Mdinas->deleteDetailDinas($whereDinas);
     }
 
     public function insertDetailCuti($id_pegawai,$id_cuti,$tgl_pengajuan,$tgl_mulai,$tgl_selesai)
@@ -36,7 +36,7 @@ class Validasidetail
 
     	for($i = $begin; $i <= $end; $i->modify('+1 day')){
 			$rangeTanggal = $i->format("Y-m-d");
-			$this->CI->mCuti->insertDetailCuti($id_pegawai,$id_cuti,$tgl_pengajuan,$rangeTanggal);
+			$this->CI->Mcuti->insertDetailCuti($id_pegawai,$id_cuti,$tgl_pengajuan,$rangeTanggal);
 		}
     }
 
@@ -44,7 +44,7 @@ class Validasidetail
     {
     	// jika menghapus detailDinas terlebih dahulu
 	    $whereCuti = array('id_cuti' => $id, );
-	    $this->CI->mCuti>deleteDetailCuti($whereCuti);
+	    $this->CI->Mcuti>deleteDetailCuti($whereCuti);
     }
 
     public function cekTanggalMulai($status,$pegawai,$start,$end)
@@ -54,7 +54,7 @@ class Validasidetail
 				$tgl_mulai = date($start);
 				$tgl_selesai = date($end);
 
-			    $cekTglMulai   = $this->CI->mCuti->whereDetailCuti($id_pegawai,$tgl_mulai);
+			    $cekTglMulai   = $this->CI->Mcuti->whereDetailCuti($id_pegawai,$tgl_mulai);
 			    if ($cekTglMulai->num_rows() > 0 ) {
 	      			return $response = 1;
 			    }
@@ -64,7 +64,7 @@ class Validasidetail
 				$tgl_mulai = date($start);
 				$tgl_selesai = date($end);
 
-			    $cekTglMulai   = $this->CI->mCuti->whereDetailDinas($id_pegawai,$tgl_mulai);
+			    $cekTglMulai   = $this->CI->Mcuti->whereDetailDinas($id_pegawai,$tgl_mulai);
 			    if ($cekTglMulai->num_rows() > 0 ) {
 	      			return $response = 1;
 			    }
@@ -79,7 +79,7 @@ class Validasidetail
 			$tgl_mulai = date($start);
 			$tgl_selesai = date($end);
 
-		    $cekTglSelesai = $this->CI->mCuti->whereDetailCuti($id_pegawai,$tgl_selesai);
+		    $cekTglSelesai = $this->CI->Mcuti->whereDetailCuti($id_pegawai,$tgl_selesai);
 		    if ($cekTglSelesai->num_rows() > 0) {
       			return $response = 1;
 		    }
@@ -88,7 +88,7 @@ class Validasidetail
 			$tgl_mulai = date($start);
 			$tgl_selesai = date($end);
 
-		    $cekTglSelesai = $this->CI->mCuti->whereDetailDinas($id_pegawai,$tgl_selesai);
+		    $cekTglSelesai = $this->CI->Mcuti->whereDetailDinas($id_pegawai,$tgl_selesai);
 		    if ($cekTglSelesai->num_rows() > 0) {
       			return $response = 1;
 		    }

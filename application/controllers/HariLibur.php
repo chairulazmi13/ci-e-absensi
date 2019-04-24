@@ -10,8 +10,8 @@ class HariLibur extends CI_Controller {
   	if($this->session->userdata('login') == 0){
   		redirect(base_url('login'));
   	}
-	    $this->load->model('mLibur');
-      $this->load->model('mPengaturan');
+	    $this->load->model('Mlibur');
+      $this->load->model('Mpengaturan');
   }
 
   // Halaman data pegawai
@@ -24,13 +24,13 @@ class HariLibur extends CI_Controller {
 
   function getFullcalendar()
   {
-    $response = $this->mLibur->getEvent();
+    $response = $this->Mlibur->getEvent();
     echo json_encode($response);
   }
 
   function getAllhariLibur()
   {
-    $response['data'] = $this->mLibur->getAll()->result_array();
+    $response['data'] = $this->Mlibur->getAll()->result_array();
     echo json_encode($response);
   }
 
@@ -44,7 +44,7 @@ class HariLibur extends CI_Controller {
       'keterangan' => $keterangan 
     );
 
-    $response['data'] = $this->mLibur->insert($data);
+    $response['data'] = $this->Mlibur->insert($data);
     $response['msg'] = 'hari libur dibuat';
 
     echo json_encode($response);
@@ -53,7 +53,7 @@ class HariLibur extends CI_Controller {
   function deleteHariLibur()
   {
     $id = $this->input->post('id');
-    $data = $this->mLibur->delete($id);
+    $data = $this->Mlibur->delete($id);
 
     if ($data == TRUE) {
       $response['msg']  = 'delete succees';
@@ -67,7 +67,7 @@ class HariLibur extends CI_Controller {
   function getHariLibur()
   {
     $id = $this->input->get('id');
-    $response = $this->mLibur->getByID($id);
+    $response = $this->Mlibur->getByID($id);
     echo json_encode($response);   
   }
 
@@ -82,7 +82,7 @@ class HariLibur extends CI_Controller {
       'keterangan' => $keterangan 
     );
 
-    $response['data'] = $this->mLibur->update($data,$id);
+    $response['data'] = $this->Mlibur->update($data,$id);
     $response['msg'] = 'update success';
 
     echo json_encode($response);   

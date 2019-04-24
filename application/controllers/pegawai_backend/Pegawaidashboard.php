@@ -9,8 +9,8 @@ class Pegawaidashboard extends CI_Controller {
   		redirect(base_url('pegawai-login'));
   	}
 
-    $this->load->model('mPegawai');
-    $this->load->model('mAbsensi');
+    $this->load->model('Mpegawai');
+    $this->load->model('Mabsensi');
     $this->load->library('hitunghari');
   }
 
@@ -61,7 +61,7 @@ class Pegawaidashboard extends CI_Controller {
         $this->load->helper("file");
         $path = $config['imagedir'].$image_name;
         delete_files($path);
-        $this->mPegawai->generateQR($id_pegawai,$image_name); //simpan ke database
+        $this->Mpegawai->generateQR($id_pegawai,$image_name); //simpan ke database
 
         $response['img'] = $path;
         $response['msg'] = 'generate QR Code success !';
@@ -81,7 +81,7 @@ class Pegawaidashboard extends CI_Controller {
     $end   = $this->hitunghari->tglindo(date('Y-m-'.$hari));
     $harikerja = $this->hitunghari->hitungHariKerja($start,$end,"-");
 
-    $data = $this->mAbsensi->indexKehadiran($bulan,$harikerja,$id_pegawai);
+    $data = $this->Mabsensi->indexKehadiran($bulan,$harikerja,$id_pegawai);
 
     foreach ($data->result_array() as $hasil) {
       $response[] = $hasil;

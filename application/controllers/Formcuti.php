@@ -1,15 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Formcuti extends CI_Controller {
+class ForMcuti extends CI_Controller {
   function __construct(){
   	parent::__construct();
 
   	if($this->session->userdata('login') == 0){
   		redirect(base_url('login'));
   	}
-  	$this->load->model('mPegawai');
-    $this->load->model('mCuti');
+  	$this->load->model('Mpegawai');
+    $this->load->model('Mcuti');
     $this->load->helper('download');
     $this->load->library('hitunghari');
     $this->load->library('validasidetail');
@@ -24,7 +24,7 @@ class Formcuti extends CI_Controller {
 
   function getAllCuti()
   {
-    $response['data'] = $this->mCuti->getAll()->result_array();
+    $response['data'] = $this->Mcuti->getAll()->result_array();
      echo json_encode($response);
   }
 
@@ -32,7 +32,7 @@ class Formcuti extends CI_Controller {
   {
     $id = $this->input->get('id_cuti');
     $where = array('id_cuti' => $id, );
-    $query = $this->mCuti->getWhere($where);
+    $query = $this->Mcuti->getWhere($where);
     if ($query->num_rows()>0) {
       foreach ($query->result_array() as $hasil) {
         $response = array(
@@ -54,10 +54,10 @@ class Formcuti extends CI_Controller {
   {
     $id = $this->input->post('id_cuti');
     $where = array('id_cuti' => $id, );
-    $this->mCuti->deleteDetailCuti($where);
+    $this->Mcuti->deleteDetailCuti($where);
     
     $response['msg'] = 'Cuti Dihapus';
-    $response['data'] = $this->mCuti->delete($where);
+    $response['data'] = $this->Mcuti->delete($where);
     $response['status'] = 'success';
 
     echo json_encode($response);
@@ -102,14 +102,14 @@ class Formcuti extends CI_Controller {
 	    // if ($approve == 1) {
 	      // jika menghapus detailCuti terlebih dahulu
 	      // $whereCuti = array('id_cuti' => $id, );
-	      // $this->mCuti->deleteDetailCuti($whereCuti);
+	      // $this->Mcuti->deleteDetailCuti($whereCuti);
 
 	      // kemudian mengupdate detail Cuti
 	      // for($i = $awal; $i <= $akhir; $i->modify('+1 day')){
 	      //     $rangeTanggal = $i->format("Y-m-d");
-	      //     $this->mCuti->insertDetailCuti($id,$tgl_pengajuan,$rangeTanggal);
+	      //     $this->Mcuti->insertDetailCuti($id,$tgl_pengajuan,$rangeTanggal);
 	      // }
-	    $response['data'] = $this->mCuti->update($id,$data);
+	    $response['data'] = $this->Mcuti->update($id,$data);
     	$response['msg'] = 'Cuti diubah';
     	$response['status'] = 'success';
     }
@@ -126,7 +126,7 @@ class Formcuti extends CI_Controller {
 
     // mendapatkan detail data cuti
     $whereCuti = array('id_cuti' => $id, );
-    $dataCuti = $this->mCuti->getWhere($whereCuti);
+    $dataCuti = $this->Mcuti->getWhere($whereCuti);
 
     // menampilkan data detail cuti
     foreach ($dataCuti->result_array() as $row) {
@@ -154,7 +154,7 @@ class Formcuti extends CI_Controller {
 		      	$response['msg'] = 'Approval gagal, sudah pernah cuti di tanggal selesai ini';
 			} else {
 				// mengupdate status approval cuti
-	    		$response['data'] = $this->mCuti->update($id,$data);
+	    		$response['data'] = $this->Mcuti->update($id,$data);
 			    // jika di approve maka range tanggal akan dimasukan ke tabel detailCuti
 			    $this->validasidetail->insertDetailCuti($pegawai,$id,$pengajuan,$awal,$akhir);
 			    $response['status'] = 'success';
@@ -163,14 +163,14 @@ class Formcuti extends CI_Controller {
 
 	    } elseif ($approve == 2) {
 	    	// mengupdate status approval cuti
-	       $response['data'] = $this->mCuti->update($id,$data);
+	       $response['data'] = $this->Mcuti->update($id,$data);
 	       $response['status'] = 'error';
 	       $response['msg'] = 'Cuti Ditolak';
 	    } else {
 	       // mengupdate status approval cuti
-	       $response['data'] = $this->mCuti->update($id,$data);
+	       $response['data'] = $this->Mcuti->update($id,$data);
 	       // jika Dipending detailCuti akan dihapus
-	       $this->mCuti->deleteDetailCuti($whereCuti);
+	       $this->Mcuti->deleteDetailCuti($whereCuti);
 	       $response['status'] = 'success';
 	       $response['msg'] = 'Cuti Dipending';
 	    }
@@ -181,7 +181,7 @@ class Formcuti extends CI_Controller {
 
   function insert()
   {
-    $id = $this->mCuti->createIdCuti();
+    $id = $this->Mcuti->createIdCuti();
     $id_pegawai    = $this->input->post('id_pegawai');
     $tgl_pengajuan = date('Y-m-d');
     $tgl_mulai     = $this->input->post('tgl_mulai');
@@ -239,7 +239,7 @@ class Formcuti extends CI_Controller {
 	            );
 
 	          $response['status'] = 'success';
-	          $response['data']   = $this->mCuti->insert($data); // melakuakn insert ke database
+	          $response['data']   = $this->Mcuti->insert($data); // melakuakn insert ke database
 	          $response['msg']    = 'Pegawai dibuatkan cuti';
           }
     }
@@ -263,7 +263,7 @@ class Formcuti extends CI_Controller {
 
             $data = array('file' => $file, );
 
-            $this->mCuti->update($id_pegawai,$data); // melakuakn insert ke database
+            $this->Mcuti->update($id_pegawai,$data); // melakuakn insert ke database
             $response = 'Dokumen ditambahkan';
           }
           echo json_encode($response);

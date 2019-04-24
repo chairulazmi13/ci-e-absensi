@@ -10,11 +10,11 @@ class Cpengaturan extends CI_Controller {
   		redirect(base_url('login'));
   	}
 
-	  	$this->load->model('mPegawai');
-	    $this->load->model('mAbsensi');
-	    $this->load->model('mCuti');
-	    $this->load->model('mDinas');
-      $this->load->model('mPengaturan');
+	  	$this->load->model('Mpegawai');
+	    $this->load->model('Mabsensi');
+	    $this->load->model('Mcuti');
+	    $this->load->model('Mdinas');
+      $this->load->model('Mpengaturan');
   	}
 
   // Halaman data pegawai
@@ -27,7 +27,7 @@ class Cpengaturan extends CI_Controller {
 
   function loadPengaturan()
   {
-    $data = $this->mPengaturan->getPengaturanWhere('1');
+    $data = $this->Mpengaturan->getPengaturanWhere('1');
     foreach ($data->result_array() as $key) {
       $response = array(
         'id' => $key['id'],
@@ -62,7 +62,7 @@ class Cpengaturan extends CI_Controller {
       'timeout_qr_code' => $timeoutQR ,
     );
 
-    $response['data'] = $this->mPengaturan->updatePengaturan($id,$data);
+    $response['data'] = $this->Mpengaturan->updatePengaturan($id,$data);
     $response['msg'] = 'Pengaturan Diupdate';
 
     echo json_encode($response);

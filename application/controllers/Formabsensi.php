@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Formabsensi extends CI_Controller {
+class ForMabsensi extends CI_Controller {
 
   function __construct(){
   	parent::__construct();
@@ -10,9 +10,9 @@ class Formabsensi extends CI_Controller {
   		redirect(base_url('login'));
   	}
 
-  	$this->load->model('mPegawai');
-    $this->load->model('mAbsensi');
-    $this->load->model('mLog');
+  	$this->load->model('Mpegawai');
+    $this->load->model('Mabsensi');
+    $this->load->model('Mlog');
     $this->load->model('mPengaturan');
 
   }
@@ -45,7 +45,7 @@ class Formabsensi extends CI_Controller {
     $tanggal = date('Y-m-d');
     $where = array('tanggal' => $tanggal);
 
-    $response['data'] = $this->mAbsensi->getByWhere($where);
+    $response['data'] = $this->Mabsensi->getByWhere($where);
     echo json_encode($response);
   }
 
@@ -77,14 +77,14 @@ class Formabsensi extends CI_Controller {
     $tanggal = $this->input->post('tanggal');
     $jam_masuk = $tanggal.' '.date('H:i:s');
     $whereNip = array('nip' => $nip, );
-    $cekNIP = $this->mPegawai->getByID($whereNip);
+    $cekNIP = $this->Mpegawai->getByID($whereNip);
 
     if ($cekNIP->num_rows()>0) { // cek NIP di tabel pegawai apakah ada ?
       foreach ($cekNIP->result_array() as $hasil) {
         $id_pegawai = $hasil['id'];
 
         $where = array('id_pegawai' => $id_pegawai, 'tanggal' => $tanggal);
-        $cekAbsensi = $this->mAbsensi->getByID($where); //cek NIp apakah tanggal tersebut sudah absen ?
+        $cekAbsensi = $this->Mabsensi->getByID($where); //cek NIp apakah tanggal tersebut sudah absen ?
 
         if ($status == 1) { //Jika radio yang dipilih masuk
           $data = $this->mPengaturan->getPengaturan();
@@ -139,8 +139,8 @@ class Formabsensi extends CI_Controller {
                 <h4><i class="icon fa fa-success"></i> Selamat datang</h4>
                 Anda absen masuk.
               </div>';
-            $response['data']  = $this->mAbsensi->insert($in);
-            $response['log'] = $this->mLog->insert($log_in);
+            $response['data']  = $this->Mabsensi->insert($in);
+            $response['log'] = $this->Mlog->insert($log_in);
           }
 
         } elseif ($status == 2) { //jika radio yang dipilih keluar atau absen pulang
@@ -175,8 +175,8 @@ class Formabsensi extends CI_Controller {
                   <h4><i class="icon fa fa-info"></i> Hati hati dijalan</h4>
                   Anda absen pulang.
                 </div>';
-            $response['data'] = $this->mAbsensi->update($where,$out);
-            $response['log'] = $this->mLog->insert($log_out);
+            $response['data'] = $this->Mabsensi->update($where,$out);
+            $response['log'] = $this->Mlog->insert($log_out);
           }
         }
 

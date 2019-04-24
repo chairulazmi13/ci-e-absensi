@@ -1,15 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Formdinas extends CI_Controller {
+class ForMdinas extends CI_Controller {
   function __construct(){
   	parent::__construct();
 
   	if($this->session->userdata('login') == 0){
   		redirect(base_url('login'));
   	}
-  	$this->load->model('mPegawai');
-    $this->load->model('mDinas');
+  	$this->load->model('Mpegawai');
+    $this->load->model('Mdinas');
     $this->load->helper('download');
     $this->load->library('hitunghari');
     $this->load->library('validasidetail');
@@ -28,7 +28,7 @@ class Formdinas extends CI_Controller {
       'tanggal_pengajuan >=' => $fromDate,
       'tanggal_pengajuan <=' => $toDate,
     );
-    $response['data'] = $this->mDinas->getWhere($where)->result_array();
+    $response['data'] = $this->Mdinas->getWhere($where)->result_array();
     echo json_encode($response);
   }
 
@@ -36,7 +36,7 @@ class Formdinas extends CI_Controller {
   {
     $id = $this->input->get('id_dinas');
     $where = array('id_dinas' => $id, );
-    $query = $this->mDinas->getWhere($where);
+    $query = $this->Mdinas->getWhere($where);
     if ($query->num_rows()>0) {
       foreach ($query->result_array() as $hasil) {
         $response = array(
@@ -56,7 +56,7 @@ class Formdinas extends CI_Controller {
 
   function insert()
   {
-    $id_dinas      = $this->mDinas->createIdDinas();
+    $id_dinas      = $this->Mdinas->createIdDinas();
     $id_pegawai    = $this->input->post('id_pegawai');
     $tgl_pengajuan = date('Y-m-d');
     $tgl_mulai     = $this->input->post('tgl_mulai');
@@ -101,7 +101,7 @@ class Formdinas extends CI_Controller {
           $this->validasidetail->insertDetailDinas($id_pegawai,$id_dinas,$tgl_pengajuan,$tgl_mulai,$tgl_selesai);
 
           $response['status'] = 'success';
-          $response['data']   = $this->mDinas->insert($data); // melakuakn insert ke database
+          $response['data']   = $this->Mdinas->insert($data); // melakuakn insert ke database
           $response['msg']    = 'Pegawai dibuatkan dinas';
     }
     echo json_encode($response);
@@ -134,7 +134,7 @@ class Formdinas extends CI_Controller {
     $this->validasidetail->deleteDetailDinas($id_dinas);
     $this->validasidetail->insertDetailDinas($id_pegawai,$id_dinas,$tgl_pengajuan,$tgl_mulai,$tgl_selesai);
 
-    $response['data'] = $this->mDinas->update($id_dinas,$data);
+    $response['data'] = $this->Mdinas->update($id_dinas,$data);
     $response['msg'] = 'Data diubah';
     $response['status'] = 'success';
 
@@ -147,7 +147,7 @@ class Formdinas extends CI_Controller {
     $where = array('id_dinas' => $id, );
 
     $this->validasidetail->deleteDetailDinas($id);
-    $this->mDinas->delete($where);
+    $this->Mdinas->delete($where);
 
     $response['msg'] = 'Data perjalanan Dihapus';
     $response['status'] = 'success';
@@ -171,7 +171,7 @@ class Formdinas extends CI_Controller {
             $file = $dofile['upload_data']['file_name'];
 
             $data = array('file' => $file, );
-            $this->mDinas->update($id_pegawai,$data); // melakuakn insert ke database
+            $this->Mdinas->update($id_pegawai,$data); // melakuakn insert ke database
             echo 'Dokumen ditambahkan';
           }
   }
@@ -182,6 +182,6 @@ class Formdinas extends CI_Controller {
 
   function getKode()
   {
-    echo $this->mDinas->createIdDinas();
+    echo $this->Mdinas->createIdDinas();
   }
 }

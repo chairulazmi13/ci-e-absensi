@@ -27,8 +27,8 @@ class Login extends CI_Controller {
 				'username' => $username,
 				'password' => md5($password)
 				);
-			$this->load->model('mUser');
-			$cek = $this->mUser->getByWhere($where);
+			$this->load->model('Muser');
+			$cek = $this->Muser->getByWhere($where);
 			// Cek username apakah ada
 			if($cek->num_rows() > 0){
 				$data = $cek->row_array();

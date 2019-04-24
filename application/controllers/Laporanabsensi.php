@@ -8,10 +8,10 @@ class Laporanabsensi extends CI_Controller {
   		redirect(base_url('login'));
   	}
 
-	  	$this->load->model('mPegawai');
-	    $this->load->model('mAbsensi');
-	    $this->load->model('mCuti');
-	    $this->load->model('mDinas');
+	  	$this->load->model('Mpegawai');
+	    $this->load->model('Mabsensi');
+	    $this->load->model('Mcuti');
+	    $this->load->model('Mdinas');
 	    $this->load->library('hitunghari');
   	}
 
@@ -39,7 +39,7 @@ class Laporanabsensi extends CI_Controller {
   		$harikerja = $this->hitunghari->hitungHariKerja($start,$end,"-");
   		$no = 1;
 
-  		$data = $this->mAbsensi->reportSummaryAbsensi($startTgl,$endTgl,$harikerja);
+  		$data = $this->Mabsensi->reportSummaryAbsensi($startTgl,$endTgl,$harikerja);
 
   		echo '<table class="table table-stripped" style="width:100%">';
   		echo '<tr class="bg-orange"><th colspan="10">Dari : '.$startTgl.'  Sampai : '.$endTgl.'</th></tr>
@@ -97,7 +97,7 @@ class Laporanabsensi extends CI_Controller {
 		}
 		echo '<th class="bg-orange">Jumlah</th></tr>';
 
-		$sql = $this->mAbsensi->reportAbsensi($tahun,$bulan);
+		$sql = $this->Mabsensi->reportAbsensi($tahun,$bulan);
 		foreach ($sql->result_array() as $row) {
 			$masuk  = array_combine( explode(',',$row['tanggal_masuk']) , explode(',', $row['masuk']) );
 			$pulang = array_combine( explode(',',$row['tanggal_pulang']) , explode(',', $row['pulang']) );

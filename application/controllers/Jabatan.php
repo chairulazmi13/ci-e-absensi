@@ -8,8 +8,8 @@ class Jabatan extends CI_Controller {
   	if($this->session->userdata('login') == 0){
   		redirect(base_url('login'));
   	}
-  	$this->load->model('mJabatan');
-    $this->load->model('mPegawai');
+  	$this->load->model('Mjabatan');
+    $this->load->model('Mpegawai');
 
   }
 
@@ -22,14 +22,14 @@ class Jabatan extends CI_Controller {
 
   function Alljabatan()
   {
-    $query = $this->mJabatan->getAll();
+    $query = $this->Mjabatan->getAll();
     foreach ($query->result() as $hasil) {
           $id = $hasil->id_jabatan;
           $response['data'][] = array(
             'id_jabatan' => $hasil->id_jabatan,
             'nama_jabatan' => $hasil->nama_jabatan,
             'keterangan' => $hasil->keterangan,
-            'jumlah' => $this->mJabatan->countPegawai($id),
+            'jumlah' => $this->Mjabatan->countPegawai($id),
           );
         }
     echo json_encode($response);
@@ -37,7 +37,7 @@ class Jabatan extends CI_Controller {
 
   function droplistjabatan()
   {
-    $data = $this->mJabatan->getAll()->result();
+    $data = $this->Mjabatan->getAll()->result();
     echo json_encode($data);
   }
 
@@ -45,7 +45,7 @@ class Jabatan extends CI_Controller {
   {
     $id = $this->input->get('id_jabatan');
     $where = array('id_jabatan' => $id, );
-    $data = $this->mJabatan->getByID($where);
+    $data = $this->Mjabatan->getByID($where);
     echo json_encode($data);
   }
 
@@ -58,7 +58,7 @@ class Jabatan extends CI_Controller {
       'keterangan' => $keterangan,
     );
 
-    $data = $this->mJabatan->insert($where);
+    $data = $this->Mjabatan->insert($where);
     echo json_encode($data);
   }
 
@@ -73,7 +73,7 @@ class Jabatan extends CI_Controller {
       'keterangan' => $keterangan,
     );
 
-    $data = $this->mJabatan->update($id_jabatan,$update);
+    $data = $this->Mjabatan->update($id_jabatan,$update);
     echo json_encode($data);
   }
 
@@ -81,13 +81,13 @@ class Jabatan extends CI_Controller {
   {
     $id = $this->input->post('id_jabatan');
     $wherePegawai = array('id_jabatan' => $id, );
-    $pegawai = $this->mPegawai->getByID($wherePegawai);
+    $pegawai = $this->Mpegawai->getByID($wherePegawai);
     if ($pegawai->num_rows()>0) {
       $response['status'] = 'error';
       $response['msg']    = 'Ada pegawai dengan divisi tersebut';
     } else {
       $where = array('id_jabatan' => $id, );
-      $response['data']   = $this->mJabatan->delete($where);
+      $response['data']   = $this->Mjabatan->delete($where);
       $response['status'] = 'success';
       $response['msg']    = 'Jabatan dihapus';
     }

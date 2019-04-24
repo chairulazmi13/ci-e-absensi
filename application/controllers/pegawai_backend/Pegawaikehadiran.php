@@ -9,10 +9,10 @@ class Pegawaikehadiran extends CI_Controller {
   		redirect(base_url('pegawai-login'));
   	}
 
-  	$this->load->model('mPegawai');
-    $this->load->model('mAbsensi');
-    $this->load->model('mCuti');
-    $this->load->model('mDinas');
+  	$this->load->model('Mpegawai');
+    $this->load->model('Mabsensi');
+    $this->load->model('Mcuti');
+    $this->load->model('Mdinas');
 
   }
 
@@ -36,7 +36,7 @@ class Pegawaikehadiran extends CI_Controller {
     $end   = date($this->input->get('end'));
 
     $id = $this->session->userdata('p_id_pegawai');
-    $response = $this->mAbsensi->getEvent($id,$start,$end);
+    $response = $this->Mabsensi->getEvent($id,$start,$end);
     echo json_encode($response);
   }
 
@@ -47,7 +47,7 @@ class Pegawaikehadiran extends CI_Controller {
     $end   = date($this->input->get('end'));
 
     $id = $this->session->userdata('p_id_pegawai');
-    $response = $this->mCuti->getEvent($id,$start,$end);
+    $response = $this->Mcuti->getEvent($id,$start,$end);
     echo json_encode($response);
   }
 
@@ -58,7 +58,7 @@ class Pegawaikehadiran extends CI_Controller {
     $end   = date($this->input->get('end'));
 
     $id = $this->session->userdata('p_id_pegawai');
-    $response = $this->mDinas->getEvent($id,$start,$end);
+    $response = $this->Mdinas->getEvent($id,$start,$end);
     echo json_encode($response);
   }
 

@@ -6,12 +6,12 @@ class Loadpengaturan
     function __construct()
     {
         $this->CI =& get_instance();
-        $this->CI->load->model('mPengaturan');
+        $this->CI->load->model('Mpengaturan');
     }
 
     public function getPengaturan($load)
     {
-    	$data = $this->CI->mPengaturan->getPengaturan();
+    	$data = $this->CI->Mpengaturan->getPengaturan();
     	foreach ($data->result_array() as $key) {
     		if ($load == 'nama_perusahaan') {
     			$hasil = $key['nama_perusahaan'];

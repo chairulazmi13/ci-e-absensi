@@ -6,7 +6,7 @@ class Pegawailogin extends CI_Controller {
   	parent::__construct();
     $this->load->helper('form');
     $this->load->library('form_validation');
-  	$this->load->model('mPegawai');
+  	$this->load->model('Mpegawai');
 
   }
 
@@ -35,7 +35,7 @@ class Pegawailogin extends CI_Controller {
         'nip' => $nip,
         'password_pegawai' => md5($password)
         );
-      $cek = $this->mPegawai->getByWhere($where);
+      $cek = $this->Mpegawai->getByWhere($where);
       // Cek username apakah ada
       if($cek->num_rows() > 0){
         $data = $cek->row_array();

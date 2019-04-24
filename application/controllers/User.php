@@ -8,8 +8,8 @@ class User extends CI_Controller {
   	if($this->session->userdata('login') == 0){
   		redirect(base_url('login'));
   	}
-  	$this->load->model('mUser');
-    $this->load->model('mPegawai');
+  	$this->load->model('Muser');
+    $this->load->model('Mpegawai');
 
   }
 
@@ -32,7 +32,7 @@ class User extends CI_Controller {
 // menampilkan data tabel user
   function getAllUser()
   {
-    $response['data'] = $this->mUser->getAll()->result();
+    $response['data'] = $this->Muser->getAll()->result();
     echo json_encode($response);
   }
 
@@ -41,7 +41,7 @@ class User extends CI_Controller {
   {
     $id_user = $this->input->post('id_user');
     $where = array('id_user' => $id_user, );
-    $query = $this->mUser->getByWhere($where);
+    $query = $this->Muser->getByWhere($where);
     if ($query->num_rows() > 0) {
       foreach ($query->result_array() as $row) {
         $response = array(
@@ -65,7 +65,7 @@ class User extends CI_Controller {
         $response['msg'] = '<div class="callout callout-warning"><h4>Peringatan</h4><p> Username haru disisi dan Jangan gunakan Spasi</p></div>';
     } else {
         $where = array('username' => $username, );
-        $query = $this->mUser->getByWhere($where);
+        $query = $this->Muser->getByWhere($where);
         if ($query->num_rows()>0) {
         $response['status'] = 'error';
         $response['class'] = 'form-group has-error';
@@ -83,7 +83,7 @@ class User extends CI_Controller {
   {
     $nama = $this->input->get('nama'); // = nama
     $where = array('nama' => $nama, );
-    $data = $this->mPegawai->getLike($where); // like
+    $data = $this->Mpegawai->getLike($where); // like
     if ($data->num_rows() > 0) {
       foreach ($data->result_array() as $hasil) {
         $response[] = array(
@@ -119,7 +119,7 @@ class User extends CI_Controller {
       $response['msg'] = 'level tidak boleh Kosong';
     } else {
       $where = array('id_pegawai' => $id_pegawai, );
-      $cekUser = $this->mUser->getByWhere($where); // ceking jika pegawai sudah dibuatkan user berdasarkan id_pegawai
+      $cekUser = $this->Muser->getByWhere($where); // ceking jika pegawai sudah dibuatkan user berdasarkan id_pegawai
       if ($cekUser->num_rows() > 0) { // jika sudah dibuatkan
         $response['status'] = 'error';
         $response['msg'] = 'pegawai tersebut sudah dibuat user';
@@ -132,7 +132,7 @@ class User extends CI_Controller {
           'aktif' => 1,
           );
         $response['status'] = 'success';
-        $response['data']   = $this->mUser->insert($data); // melakuakn insert ke database
+        $response['data']   = $this->Muser->insert($data); // melakuakn insert ke database
         $response['msg']    = 'Pegawai dibuatkan user dengan username'.$username.'';
       }
 
@@ -144,7 +144,7 @@ class User extends CI_Controller {
   {
     $id_user = $this->input->post('id_user');
     $where = array('id_user' => $id_user, );
-    $response['data'] = $this->mUser->delete($where);
+    $response['data'] = $this->Muser->delete($where);
 
     echo json_encode($response);
   }
@@ -156,7 +156,7 @@ class User extends CI_Controller {
       'aktif' => $this->input->post('status'),
       'id_level' => $this->input->post('level'),
     );
-    $response['data'] = $this->mUser->update($id_user,$data);
+    $response['data'] = $this->Muser->update($id_user,$data);
 
     echo json_encode($response);
   }
@@ -172,13 +172,13 @@ class User extends CI_Controller {
       'password' => md5($old_password)
     );
 
-    $user = $this->mUser->getByWhere($whereUser);
+    $user = $this->Muser->getByWhere($whereUser);
 
     if($user->num_rows() > 0){
       $data = array(
         'password' => md5($new_password),
       );
-      $this->mUser->update($id_user,$data);
+      $this->Muser->update($id_user,$data);
       $response['msg'] = 'password dirubah';
     } else {
       $response['msg'] = 'password lama tidak sesuai!';

@@ -9,19 +9,19 @@ class Dashboard extends CI_Controller {
   	if($this->session->userdata('login') == 0){
   		redirect(base_url('login'));
   	}
-	  	$this->load->model('mPegawai');
-	    $this->load->model('mAbsensi');
-	    $this->load->model('mCuti');
-	    $this->load->model('mDinas');
-	    $this->load->model('mLog');
+	  	$this->load->model('Mpegawai');
+	    $this->load->model('Mabsensi');
+	    $this->load->model('Mcuti');
+	    $this->load->model('Mdinas');
+	    $this->load->model('Mlog');
   	}
 
 	public function index()
 	{
-		$data['widget_absenmasuk'] = $this->mAbsensi->countAbsenMasuk();
-		$data['widget_absenpulang'] = $this->mAbsensi->countAbsenPulang();
-		$data['widget_cuti'] = $this->mCuti->countPendingCuti();
-		$data['widget_dinas'] = $this->mDinas->countDinasToday();
+		$data['widget_absenmasuk'] = $this->Mabsensi->countAbsenMasuk();
+		$data['widget_absenpulang'] = $this->Mabsensi->countAbsenPulang();
+		$data['widget_cuti'] = $this->Mcuti->countPendingCuti();
+		$data['widget_dinas'] = $this->Mdinas->countDinasToday();
 		$this->load->view('template/header');
         $this->load->view('admin/dashboard',$data);
         $this->load->view('template/footer');
@@ -30,7 +30,7 @@ class Dashboard extends CI_Controller {
 	function widgetLog()
 	{
 		$no = 1;
-		$data = $this->mLog->getLog();
+		$data = $this->Mlog->getLog();
 
 		echo '<table class="table table-condensed">';
         echo '<thead><tr>';

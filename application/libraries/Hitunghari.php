@@ -19,8 +19,8 @@ class Hitunghari
 	//    menetapkan parameter awal dan libur nasional
 	//    pada prakteknya data libur nasional bisa diambil dari database
 	 
-		$this->CI->load->model('mLibur');
-		$harilibur = $this->CI->mLibur->getAll();
+		$this->CI->load->model('Mlibur');
+		$harilibur = $this->CI->Mlibur->getAll();
 		foreach ($harilibur->result_array() as $row) {
 			$liburnasional[] = $this->tglindo($row['tanggal_libur']);
 			// $liburnasional = array("01-05-2014","15-05-2014","27-05-2014","29-05-2014","11-03-2019");

@@ -9,7 +9,7 @@ class Pegawai extends CI_Controller {
   		redirect(base_url('login'));
   	}
 
-  	$this->load->model('mPegawai');
+  	$this->load->model('Mpegawai');
 
   }
 
@@ -35,7 +35,7 @@ class Pegawai extends CI_Controller {
 
   function getAllPegawai()
   {
-    $response['data'] = $this->mPegawai->getAll()->result();
+    $response['data'] = $this->Mpegawai->getAll()->result();
     echo json_encode($response);
   }
 
@@ -43,7 +43,7 @@ class Pegawai extends CI_Controller {
   {
     $id = $this->input->get('id');
     $where = array('id' => $id, );
-    $response = $this->mPegawai->getDetailByID($where);
+    $response = $this->Mpegawai->getDetailByID($where);
     echo json_encode($response);
   }
 
@@ -69,7 +69,7 @@ class Pegawai extends CI_Controller {
       'ip_address' => $ip_address
     );
 
-    $response = $this->mPegawai->insert($data);
+    $response = $this->Mpegawai->insert($data);
     echo json_encode($response);
   }
 
@@ -77,7 +77,7 @@ class Pegawai extends CI_Controller {
   {
     $id = $this->input->post('id');
     $data = array('aktif_pegawai' => 0, );
-    $response['data'] = $this->mPegawai->update($id,$data);
+    $response['data'] = $this->Mpegawai->update($id,$data);
     if ($response['data'] == true) {
       $response['msg'] = 'Non aktif sukses';
     } else {
@@ -98,7 +98,7 @@ class Pegawai extends CI_Controller {
       'id_jabatan' => $this->input->post('id_jabatan'),
       'ip_address' => $this->input->post('ip_address'),
     );
-    $response['data'] = $this->mPegawai->update($id,$data);
+    $response['data'] = $this->Mpegawai->update($id,$data);
     $response['msg'] = 'Data pegawai'.$this->input->post('nama').'dirubah';
     echo json_encode($response);
   }
@@ -112,7 +112,7 @@ class Pegawai extends CI_Controller {
         $response['msg'] = 'NIP haru disisi dan Jangan gunakan Spasi';
     } else {
       $where = array('nip' => $id, );
-      $data = $this->mPegawai->getByID($where)->num_rows();
+      $data = $this->Mpegawai->getByID($where)->num_rows();
       if ($data > 0) {
         $response['status'] = 'error';
         $response['msg'] = '<label class="control-label text-red" id="inputError"><i class="fa fa-times-circle-o"></i> NIP sudah ada</label>';

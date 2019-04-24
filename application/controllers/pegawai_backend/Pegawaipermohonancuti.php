@@ -7,10 +7,10 @@ class Pegawaipermohonancuti extends CI_Controller {
   	if($this->session->userdata('pegawai_login') == 0){
   		redirect(base_url('pegawai-login'));
   	}
-  	$this->load->model('mPegawai');
-    $this->load->model('mAbsensi');
-    $this->load->model('mCuti');
-    $this->load->model('mUser');
+  	$this->load->model('Mpegawai');
+    $this->load->model('Mabsensi');
+    $this->load->model('Mcuti');
+    $this->load->model('Muser');
     $this->load->library('hitunghari');
     $this->load->library('validasidetail');
 
@@ -33,13 +33,13 @@ class Pegawaipermohonancuti extends CI_Controller {
 
   function listAdmin()
   {
-    $data = $this->mUser->getAll()->result();
+    $data = $this->Muser->getAll()->result();
     echo json_encode($data);
   }
 
   function insert() // insert atau mengirim permohonan cuti
   {
-    $id = $this->mCuti->createIdCuti();
+    $id = $this->Mcuti->createIdCuti();
     $id_pegawai    = $this->session->userdata("p_id_pegawai");
     $tgl_pengajuan = date('Y-m-d');
     $tgl_mulai     = $this->input->post('tanggalMulai');
@@ -85,7 +85,7 @@ class Pegawaipermohonancuti extends CI_Controller {
           );
 
          $response['status'] = 'success';
-         $response['data']   = $this->mCuti->insert($data); // melakuakn insert ke database
+         $response['data']   = $this->Mcuti->insert($data); // melakuakn insert ke database
          $response['msg']    = 'Permohonan Cuti terkirim';
     }
     echo json_encode($response);
