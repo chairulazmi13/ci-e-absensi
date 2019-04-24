@@ -163,7 +163,7 @@ desired effect
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url('user/rubahPassword');?>" class="btn btn-default btn-flat">Rubah Password</a>
+                  <a href="<?php echo base_url('User/rubahPassword');?>" class="btn btn-default btn-flat">Rubah Password</a>
                 </div>
                 <div class="pull-right">
                   <a href="<?php echo base_url('keluar');?>" class="btn btn-default btn-flat">Keluar</a>
@@ -205,17 +205,17 @@ desired effect
                 echo "<li><a href='".$url."'><i class='fa fa-user text-blue'></i> <span>User</span></a></li>";
               }
             ?>
-            <li><a href="<?php echo base_url('divisi'); ?>"><i class="fa fa-institution text-red"></i> <span>Divisi</span></a></li>
-            <li><a href="<?php echo base_url('jabatan'); ?>"><i class="fa fa-suitcase text-orange"></i> <span>Jabatan</span></a></li>
-            <li><a href="<?php echo base_url('pegawai'); ?>"><i class="fa fa-group text-aqua"></i> <span>Pegawai</span></a></li>
+            <li><a href="<?php echo base_url('Divisi'); ?>"><i class="fa fa-institution text-red"></i> <span>Divisi</span></a></li>
+            <li><a href="<?php echo base_url('Jabatan'); ?>"><i class="fa fa-suitcase text-orange"></i> <span>Jabatan</span></a></li>
+            <li><a href="<?php echo base_url('Pegawai'); ?>"><i class="fa fa-group text-aqua"></i> <span>Pegawai</span></a></li>
           </ul>
         </li>
         <!-- Optionally, you can add icons to the links -->
         <li class="header">Menu Absensi</li>
-        <li><a href="<?php echo base_url('formAbsensi'); ?>"><i class="fa fa-barcode"></i> <span>Absensi</span></a></li>
-        <li><a href="<?php echo base_url('formCuti'); ?>"><i class="fa fa-calendar-plus-o"></i> <span>Cuti</span></a></li>
-        <li><a href="<?php echo base_url('formDinas'); ?>"><i class="fa fa-automobile "></i> <span>Dinas Luar</span></a></li>
-        <li><a href="<?php echo base_url('harilibur'); ?>"><i class="fa fa-calendar-times-o "></i> Hari Libur</a></li>
+        <li><a href="<?php echo base_url('Formabsensi'); ?>"><i class="fa fa-barcode"></i> <span>Absensi</span></a></li>
+        <li><a href="<?php echo base_url('Formcuti'); ?>"><i class="fa fa-calendar-plus-o"></i> <span>Cuti</span></a></li>
+        <li><a href="<?php echo base_url('Formdinas'); ?>"><i class="fa fa-automobile "></i> <span>Dinas Luar</span></a></li>
+        <li><a href="<?php echo base_url('Harilibur'); ?>"><i class="fa fa-calendar-times-o "></i> Hari Libur</a></li>
         <li class="header">Lainnya</li>
     <!--     <li><a href="#" data-toggle="modal" data-target="#ModalReport"><i class="fa fa-bar-chart"></i> <span>Laporan</span></a></li> -->
         <li class="treeview">
@@ -226,13 +226,13 @@ desired effect
             </span>
           </a>
           <ul class="treeview-menu" style="display: none;">
-            <li><a href="<?php echo base_url('laporanAbsensi/laporan_absensi'); ?>">laporan Absensi</a></li>
+            <li><a href="<?php echo base_url('Laporanabsensi/laporan_absensi'); ?>">laporan Absensi</a></li>
 <!--             <li><a href="#">laporan Cuti</a></li>
             <li><a href="#">laporan Dinas Luar Kota</a></li> -->
-            <li><a href="<?php echo base_url('laporanAbsensi/laporan_summary_absensi'); ?>">laporan Summary Absensi</a></li>
+            <li><a href="<?php echo base_url('Laporanabsensi/laporan_summary_absensi'); ?>">laporan Summary Absensi</a></li>
           </ul>
         </li>
-        <li><a href="<?php echo base_url('cPengaturan'); ?>"><i class="fa fa-gear"></i> Pengaturan</a></li>
+        <li><a href="<?php echo base_url('Cpengaturan'); ?>"><i class="fa fa-gear"></i> Pengaturan</a></li>
       </ul>
       <!-- /.sidebar-menu -->
 
