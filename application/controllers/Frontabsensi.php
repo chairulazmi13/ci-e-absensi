@@ -68,6 +68,7 @@ class Frontabsensi extends CI_Controller {
     $phone_ip_address = long2ip($get_ip);
     $tanggal = date('Y-m-d');
     $jam_absensi = date('Y-m-d H:i:s');
+    $time = date('H:i:s');
     $whereNip = array('nip' => $nip, );
     $cekNIP = $this->Mpegawai->getByID($whereNip);
 
@@ -93,7 +94,7 @@ class Frontabsensi extends CI_Controller {
         $where = array('id_pegawai' => $id_pegawai, 'tanggal' => $tanggal);
         $cekAbsensi = $this->Mabsensi->getByID($where); //cek NIp apakah tanggal tersebut sudah absen ?
 
-        if ($jam_absensi < $mulai_absensi) {
+        if ($time < $mulai_absensi) {
           $response['msg']  = '<div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4><i class="icon fa fa-warning"></i> Info</h4>
@@ -113,11 +114,11 @@ class Frontabsensi extends CI_Controller {
               </div>';
         } elseif ($this->cekExpiredQR($last_activity) == 1) {
 
-          if ($jam_absensi > $mulai_absensi) {
+          if ($time > $mulai_absensi) {
 
             $start_masuk = date($mulai_masuk);
 
-            if ($jam_absensi > $start_masuk) { // late
+            if ($time > $start_masuk) { // late
               $keterangan = 'Masuk Telat '. $this->cekTelatAbsensi($jam_absensi);
               $jam_telat = date($this->cekTelatAbsensi($jam_absensi));
               $telat = 1;
@@ -155,7 +156,7 @@ class Frontabsensi extends CI_Controller {
 
             // }
 
-            if ($jam_absensi < $mulai_pulang && $cekAbsensi->num_rows()<1){ // jika belum melakukan absensi dan masih dibawah jam kerja
+            if ($time < $mulai_pulang && $cekAbsensi->num_rows()<1){ // jika belum melakukan absensi dan masih dibawah jam kerja
                   $response['data'] = $this->Mabsensi->insert($in); // akan di input masuk
                   $response['msg']  = '<div class="alert alert-success alert-dismissible">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -168,7 +169,7 @@ class Frontabsensi extends CI_Controller {
                   }
               }
                 
-            elseif ($jam_absensi > $mulai_pulang && $cekAbsensi->num_rows()>0) { // jika sudah jam pulang
+            elseif ($time > $mulai_pulang && $cekAbsensi->num_rows()>0) { // jika sudah jam pulang
                   // dan pegawai sudah absen masuk
                       // maka akan di input absen pulang
 
@@ -227,8 +228,4 @@ class Frontabsensi extends CI_Controller {
     echo json_encode($response);
   }
 
-  private function in()
-  {
-    # code...
-  }
 }
