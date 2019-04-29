@@ -10,12 +10,25 @@ class Frontabsensi extends CI_Controller {
     $this->load->model('Mabsensi');
     $this->load->model('Mlog');
     $this->load->model('Mpengaturan');
+    $this->load->library('widget');
 
   }
 
   function index()
   {
     $this->load->view('absen');
+  }
+
+  function widgetlogactivity()
+  {
+    $this->widget->LogActivity();
+  }
+
+  function ip()
+  {
+    $get_ip = '192.168.1.68';
+    $phone_ip_address = ip2long($get_ip);
+    echo $phone_ip_address;
   }
 
   private function cekExpiredQR($last_activity)
