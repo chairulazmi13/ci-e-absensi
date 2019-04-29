@@ -31,12 +31,12 @@ class Pegawaidashboard extends CI_Controller {
   function gerateQrCode()
   {
         $id_pegawai = $this->input->post('id_pegawai');
-        $nip = $this->input->post('nip');
+        $nip = $this->session->userdata('p_nip');
         $ip_address = $_SERVER['REMOTE_ADDR'];
         $ip2long = ip2long($ip_address);
 
         // mengkofersi ip address ke long integer
-        $qrcode = $nip.$ip2long;
+        $qrcode = sprintf("%s%d",$nip,$ip2long);
 
         $this->load->library('ciqrcode'); //pemanggilan library QR CODE
 
