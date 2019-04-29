@@ -24,13 +24,6 @@ class Frontabsensi extends CI_Controller {
     $this->widget->LogActivity();
   }
 
-  function ip()
-  {
-    $get_ip = '192.168.1.68';
-    $phone_ip_address = ip2long($get_ip);
-    echo $phone_ip_address;
-  }
-
   private function cekExpiredQR($last_activity)
   { 
     date_default_timezone_set('Asia/Jakarta');
@@ -77,7 +70,7 @@ class Frontabsensi extends CI_Controller {
     date_default_timezone_set('Asia/Jakarta');
     $qrcode = $this->input->post('qrcode');
     $nip = substr($qrcode,0,18);
-    $get_ip = ltrim($qrcode,$nip);
+    $get_ip = substr($qrcode,18);
     $phone_ip_address = long2ip($get_ip);
     $tanggal = date('Y-m-d');
     $jam_absensi = date('Y-m-d H:i:s');
