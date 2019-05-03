@@ -81,7 +81,7 @@ $route['absensi'] = 'Formabsensi/absensi';
 
 // form_cuti
 $route['getallcuti'] = 'Formcuti/getAllCuti';
-$route['insertcuti'] = 'Formabsensi/insert';
+$route['insertcuti'] = 'Formcuti/insert';
 $route['approvalcuti'] = 'Formcuti/statusApproval';
 $route['hapuscuti'] = 'Formcuti/hapusCuti';
 $route['absensi'] = 'Formabsensi/absensi';
