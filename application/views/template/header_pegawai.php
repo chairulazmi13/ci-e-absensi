@@ -10,6 +10,72 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="theme-color" content="#008d4c">
   <title>E-absensi | Starter</title>
   <!-- Tell the browser to be responsive to screen width -->
+  <style type="text/css">
+    /* Sticky footer styles
+    -------------------------------------------------- */
+
+    html,
+    body {
+      height: 100%;
+      /* The html and body elements cannot have any padding or margin. */
+    }
+
+    /* Wrapper for page content to push down footer */
+    #wrap {
+      min-height: 100%;
+      height: auto !important;
+      height: 100%;
+      /* Negative indent footer by its height */
+      margin: 0 auto -60px;
+      /* Pad bottom by footer height */
+      padding: 0 0 60px;
+    }
+
+    /* Set the fixed height of the footer here */
+    #footer {
+      height: 60px;
+      background-color: #f5f5f5;
+    }
+
+
+    /* Custom page CSS
+    -------------------------------------------------- */
+    /* Not required for template or sticky footer method. */
+
+    #wrap > .container {
+      padding: 10px 15px 0;
+    }
+
+    #footer > .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .navbar-header {
+      float:none;
+      width:100%;
+      padding:10px;
+    }
+    .navbar-brand {
+        font-size:20pt;
+        float:none;
+    }
+    #bottomNav {
+      padding:5px;
+    }
+    #bottomNav a {
+        font-size:10pt;
+        color:#ddd;
+        text-decoration:none;
+    }
+    #bottomNav a i{
+        font-size:18pt;
+    }
+    #bottomNav a:hover {
+        color:#fff;
+    }
+
+  </style>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -103,7 +169,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-green fixed">
+<body class="hold-transition skin-green sidebar-collapse">
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -133,11 +199,6 @@ desired effect
 
 
       <ul class="sidebar-menu " data-widget="tree">
-        <li class="header">Profile Pegawai</li>
-        <li><a href="#">Your IP : <?php echo $_SERVER['REMOTE_ADDR'];?></a></li>
-        <li><a href="#">NIP : <?=$this->session->userdata('p_nip');?></a></li>
-        <li><a href="#">Nama : <?=$this->session->userdata('p_nama');?></a></li>
-        <li><a href="#">Jabatan : <?=$this->session->userdata('p_nama_jabatan');?></a></li>
         <li class="header">Menu</li>
         <li><a href="<?=base_url('pegawai-dashboard');?>"><i class="fa fa-dashboard text-green"></i> <span>Dashboard</span></a></li>
         <li><a href="<?=base_url('pegawai-kehadiran');?>"><i class="fa fa-calendar text-orange"></i> <span>Kehadiran</span></a></li>

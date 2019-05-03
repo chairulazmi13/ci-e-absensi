@@ -2,16 +2,14 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Inbox Cuti
-      </h1>
+        <a href="<?=base_url('pegawai-permohonan-cuti');?>" class="btn btn-default btn-lg"><i class="fa fa-fw fa-file-text-o"></i> Buat Permohonan cuti</a>
     </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
       <div class="col-md-12">
-        <div class="box box-success">
+        <div class="box box-warning">
               <div class="box-header">
                 <h4>Daftar permohonan Cuti</h4>
               </div>

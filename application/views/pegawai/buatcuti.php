@@ -2,9 +2,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Kehadiran
-      </h1>
+      <a href="<?=base_url('pegawai-inbox');?>" class="btn btn-default btn-lg"><i class="fa fa-fw fa-arrow-left"></i>  Kembali</a>
     </section>
 
     <!-- Main content -->
